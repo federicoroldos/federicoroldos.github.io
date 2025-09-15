@@ -123,4 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('scrolled');
         }
     });
+
+    console.log(document.querySelector('.logo').innerHTML);
 });
