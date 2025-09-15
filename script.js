@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const translations = {
         es: {
+            header_name: "Federico Roldos",
             name: "Federico Roldós Fregeiro",
+            about_me_title: "Sobre Mí",
             intro_text: "Mi nombre es Federico, tengo 22 años y vivo en Montevideo, Uruguay. Estoy estudiando la Licenciatura en Tecnologías de la Información en la Universidad Tecnológica (UTEC). Actualmente estoy en mi 8vo semestre. Soy un estudiante comprometido con el crecimiento continuo y la mejora constante, destacándome por mi puntualidad y responsabilidad, mi actitud positiva y abierta para aprender, mi enfoque discreto y respetuoso en el trabajo, y mis sólidos conocimientos y habilidades en el uso de herramientas informáticas, lo que me permite buscar activamente oportunidades para ampliar mi horizonte y ayudarme a evolucionar en mi carrera.",
             studies_title: "Estudios",
             studies_text: [
@@ -24,10 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "Google Cloud Computing Fundamentals Certificate", url: "#" },
                 { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "#" }
             ],
+            personal_projects_title: "Proyectos Personales",
+            personal_projects_text: "Aquí se mostrarán los proyectos personales.",
             footer_text: "© 2025 Federico Roldos"
         },
         en: {
+            header_name: "Federico Roldos",
             name: "Federico Roldós Fregeiro",
+            about_me_title: "About Me",
             intro_text: "My name is Federico, I am 22 years old, and I live in Montevideo, Uruguay. I am studying Bachelor in Information Technology at Universidad Tecnologica (UTEC). I am currently in my 8th semester. I am a student committed to continuous growth and constant improvement, standing out for my punctuality and responsibility, my positive and open attitude to learn, my discreet and respectful approach to work, and my solid knowledge and skills in the use of computer tools, which allows me to actively seek opportunities to broaden my horizon and help me to evolve in my career.",
             studies_title: "Studies",
             studies_text: [
@@ -47,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "Google Cloud Computing Fundamentals Certificate", url: "#" },
                 { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "#" }
             ],
+            personal_projects_title: "Personal Projects",
+            personal_projects_text: "Personal projects will be displayed here.",
             footer_text: "© 2025 Federico Roldos"
         }
     };
@@ -54,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateText(language) {
         document.querySelectorAll('[data-key]').forEach(element => {
             const key = element.getAttribute('data-key');
-            if (element.tagName === 'H2') {
+            if (element.tagName === 'H2' && element.querySelector('i')) {
                 const icon = element.querySelector('i');
                 element.innerHTML = '';
                 element.appendChild(icon);
@@ -123,6 +131,4 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('scrolled');
         }
     });
-
-    console.log(document.querySelector('.logo').innerHTML);
 });

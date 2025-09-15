@@ -11,8 +11,9 @@
 <body>
     <header>
         <nav>
-            <div class="logo">
-                <img src="images/logo.svg" alt="Federico Roldos Logo">
+            <div class="header-profile">
+                <img src="images/profile.jpg" alt="Federico Roldos" class="header-pic">
+                <span data-key="header_name">Federico Roldos</span>
             </div>
             <div class="nav-right">
                 <div class="social-icons">
@@ -28,6 +29,7 @@
     </header>
     <main>
         <section id="intro">
+            <h2 data-key="about_me_title"></h2>
             <img src="images/profile.jpg" alt="Federico Roldos" id="profile-pic">
             <h1 data-key="name">Federico Roldos</h1>
             <p data-key="intro_text"></p>
@@ -48,6 +50,12 @@
             <h2 data-key="projects_title"><i class="fas fa-certificate"></i> </h2>
             <div class="certifications-container" data-key="projects_text">
                 <!-- Certification buttons will be generated here by script.js -->
+            </div>
+        </section>
+        <section id="personal-projects">
+            <h2 data-key="personal_projects_title"></h2>
+            <div class="personal-projects-container" data-key="personal_projects_text">
+                <!-- Personal projects will be generated here -->
             </div>
         </section>
     </main>

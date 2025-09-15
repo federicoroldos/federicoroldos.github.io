@@ -17,7 +17,7 @@ async def main():
         await page.wait_for_timeout(1000)
 
         # Take a screenshot of the Spanish version
-        await page.screenshot(path='jules-scratch/verification/screenshot-es-logo.png', full_page=True)
+        await page.screenshot(path='jules-scratch/verification/screenshot-es-final.png', full_page=True)
 
         # Click the English button
         await page.click('#lang-en')
@@ -26,7 +26,7 @@ async def main():
         await page.wait_for_timeout(1000)
 
         # Take a screenshot of the English version
-        await page.screenshot(path='jules-scratch/verification/screenshot-en-logo.png', full_page=True)
+        await page.screenshot(path='jules-scratch/verification/screenshot-en-final.png', full_page=True)
 
         await browser.close()
 
