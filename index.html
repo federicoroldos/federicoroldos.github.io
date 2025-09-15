@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Federico Roldos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="language-selector">
-                <button id="lang-es">ES</button>
-                <button id="lang-en">EN</button>
+            <div class="logo">FR</div>
+            <div class="nav-right">
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/federicoroldos/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/federicoroldos" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="language-selector">
+                    <button id="lang-es">ES</button>
+                    <button id="lang-en">EN</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -22,16 +30,22 @@
             <p data-key="intro_text"></p>
         </section>
         <section id="studies">
-            <h2 data-key="studies_title"></h2>
-            <p data-key="studies_text"></p>
+            <h2 data-key="studies_title"><i class="fas fa-graduation-cap"></i> </h2>
+            <div class="timeline" data-key="studies_text">
+                <!-- Timeline items will be generated here -->
+            </div>
         </section>
         <section id="experience">
-            <h2 data-key="experience_title"></h2>
-            <p data-key="experience_text"></p>
+            <h2 data-key="experience_title"><i class="fas fa-briefcase"></i> </h2>
+            <div class="timeline" data-key="experience_text">
+                <!-- Timeline items will be generated here -->
+            </div>
         </section>
         <section id="projects">
-            <h2 data-key="projects_title"></h2>
-            <p data-key="projects_text"></p>
+            <h2 data-key="projects_title"><i class="fas fa-certificate"></i> </h2>
+            <div class="certifications-container" data-key="projects_text">
+                <!-- Certification buttons will be generated here by script.js -->
+            </div>
         </section>
     </main>
     <footer>
