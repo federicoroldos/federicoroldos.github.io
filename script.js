@@ -5,11 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const translations = {
         es: {
             header_name: "Federico Roldos",
-            name: "Federico Roldós Fregeiro",
+            name: "Federico Roldós",
             about_me_title: "Sobre Mí",
-            intro_text: "Mi nombre es Federico, tengo 22 años y vivo en Montevideo, Uruguay. Estoy estudiando la Licenciatura en Tecnologías de la Información en la Universidad Tecnológica (UTEC). Actualmente estoy en mi 8vo semestre. Soy un estudiante comprometido con el crecimiento continuo y la mejora constante, destacándome por mi puntualidad y responsabilidad, mi actitud positiva y abierta para aprender, mi enfoque discreto y respetuoso en el trabajo, y mis sólidos conocimientos y habilidades en el uso de herramientas informáticas, lo que me permite buscar activamente oportunidades para ampliar mi horizonte y ayudarme a evolucionar en mi carrera.",
+            intro_text: "Mi nombre es Federico, tengo 22 años y vivo en Uruguay. Estoy estudiando la Licenciatura en Tecnologías de la Información en la Universidad Tecnológica (UTEC). Soy un estudiante comprometido con el crecimiento continuo y la mejora constante, con el deseo de llevar adelante mis proyectos personales, creando soluciones para ayudar a quienes puedan requerir de ellas, mejorando mis habilidades blandas, y formando cada vez más mi perfil profesional. Destaco por mi enfoque discreto y respetuoso en el trabajo, y mis sólidos conocimientos y facilidades en el uso de herramientas informáticas, como lenguajes de programación, y diferentes piezas de software destinadas al testing, automatización, y DevOps.",
             studies_title: "Estudios",
             studies_text: [
+                { date: "2025", title: "Certificacion en DevOps", location: "Universidad ORT Uruguay" },
                 { date: "2021 – Actualidad", title: "Licenciatura en Tecnologías de la Información", location: "Universidad Tecnológica - UTEC (Fray Bentos, Uruguay)" },
                 { date: "2023", title: "Programa de Intercambio Estudiantil", location: "Karelia University of Applied Sciences (Joensuu, Finlandia)" },
                 { date: "2018 – 2020", title: "Bachillerato Físico-Matemático", location: "Liceo N°1 José María Campos (Mercedes, Uruguay)" },
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             projects_title: "Certificaciones",
             projects_text: [
+                { name: "Certificacion en DevOps", url: "#" },
                 { name: "Learning Paths in Microsoft Learn - Power Platform", url: "#" },
                 { name: "Learning Paths on Microsoft Learn - Microsoft Azure Fundamentals", url: "#" },
                 { name: "Google Cloud Computing Fundamentals Certificate", url: "#" },
@@ -32,11 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         en: {
             header_name: "Federico Roldos",
-            name: "Federico Roldós Fregeiro",
+            name: "Federico Roldós",
             about_me_title: "About Me",
-            intro_text: "My name is Federico, I am 22 years old, and I live in Montevideo, Uruguay. I am studying Bachelor in Information Technology at Universidad Tecnologica (UTEC). I am currently in my 8th semester. I am a student committed to continuous growth and constant improvement, standing out for my punctuality and responsibility, my positive and open attitude to learn, my discreet and respectful approach to work, and my solid knowledge and skills in the use of computer tools, which allows me to actively seek opportunities to broaden my horizon and help me to evolve in my career.",
+            intro_text: "My name is Federico, I am 22 years old and I live in Uruguay. I am studying the Bachelor's Degree in Information Technologies at the Technological University (UTEC). I am a student committed to continuous growth and constant improvement, with the desire to carry out my personal projects, creating solutions to help those who may require them, improving my soft skills, and increasingly forming my professional profile. I stand out for my discreet and respectful approach at work, and my solid knowledge and facilities in the use of computer tools, such as programming languages, and different pieces of software for testing, automation, and DevOps.",
             studies_title: "Studies",
             studies_text: [
+                { date: "2025", title: "DevOps Certification", location: "ORT University Uruguay" },
                 { date: "2021 – Current", title: "Bachelor's Degree in Information Technology", location: "Universidad Tecnológica - UTEC (Fray Bentos, Uruguay)" },
                 { date: "2023", title: "Student Exchange Program", location: "Karelia University of Applied Sciences (Joensuu, Finland)" },
                 { date: "2018 – 2020", title: "Physics-Mathematics Baccalaureate", location: "High School N°1 José María Campos (Mercedes, Uruguay)" },
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             projects_title: "Certifications",
             projects_text: [
+                { name: "DevOps Certification", url: "#" },
                 { name: "Learning Paths in Microsoft Learn - Power Platform", url: "#" },
                 { name: "Learning Paths on Microsoft Learn - Microsoft Azure Fundamentals", url: "#" },
                 { name: "Google Cloud Computing Fundamentals Certificate", url: "#" },
@@ -105,6 +109,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set initial language
     updateText('es');
+
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const icon = darkModeToggle.querySelector('i');
+        if (body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    });
 
     // Scroll animations
     const sections = document.querySelectorAll('section');
