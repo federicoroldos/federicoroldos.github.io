@@ -112,6 +112,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set initial language
     updateText('es');
 
+    // WIP Modal Logic
+    const wipModal = document.getElementById('wip-modal');
+    const closeButton = document.querySelector('.close-button');
+
+    const hideModal = () => {
+        wipModal.classList.add('hidden');
+        localStorage.setItem('wipModalDismissed', 'true');
+    };
+
+    if (localStorage.getItem('wipModalDismissed') !== 'true') {
+        wipModal.classList.remove('hidden');
+    } else {
+        wipModal.classList.add('hidden');
+    }
+
+    closeButton.addEventListener('click', hideModal);
+
+    wipModal.addEventListener('click', (event) => {
+        if (event.target === wipModal) {
+            hideModal();
+        }
+    });
+
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
 
