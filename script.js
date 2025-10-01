@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const translations = {
         es: {
+            wip_banner: "Sitio en construcción. Versión final próximamente.",
             header_name: "Federico Roldos",
             name: "Federico Roldós",
             about_me_title: "Sobre Mí",
-            intro_text: "Mi nombre es Federico, tengo 22 años y vivo en Uruguay. Estoy estudiando la Licenciatura en Tecnologías de la Información en la Universidad Tecnológica (UTEC). Soy un estudiante comprometido con el crecimiento continuo y la mejora constante, con el deseo de llevar adelante mis proyectos personales, creando soluciones para ayudar a quienes puedan requerir de ellas, mejorando mis habilidades blandas, y formando cada vez más mi perfil profesional. Destaco por mi enfoque discreto y respetuoso en el trabajo, y mis sólidos conocimientos y facilidades en el uso de herramientas informáticas, como lenguajes de programación, y diferentes piezas de software destinadas al testing, automatización, y DevOps.",
+            intro_text: "Mi nombre es Federico, tengo 22 años y vivo en Montevideo, Uruguay. Estoy cursando el semestre 8 de Licenciatura en Tecnologías de la Información en la Universidad Tecnológica (UTEC), y Certificación en DevOps en Universidad ORT, en Uruguay.\nSoy un estudiante dedicado a mi continuo desarrollo y a la mejora personal constante, destaco por mi puntualidad y responsabilidad, mi actitud positiva y discreta, mi voluntad permanente al aprendizaje, y mi eficiencia en el trabajo, lo cual me realizar diversas tareas para continuar aprendiendo, ampliando mis habilidades y a progresando más en el desarrollo de mi carrera profesional.",
             studies_title: "Estudios",
             studies_text: [
                 { date: "2025", title: "Certificacion en DevOps", location: "Universidad ORT Uruguay" },
@@ -29,14 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "#" }
             ],
             personal_projects_title: "Proyectos Personales",
-            personal_projects_text: "Aquí se mostrarán los proyectos personales.",
+            personal_projects_text: "Aquí mostraré mis proyectos personales.",
             footer_text: "© 2025 Federico Roldos"
         },
         en: {
+            wip_banner: "Site under construction. Final version coming soon.",
             header_name: "Federico Roldos",
             name: "Federico Roldós",
             about_me_title: "About Me",
-            intro_text: "My name is Federico, I am 22 years old and I live in Uruguay. I am studying the Bachelor's Degree in Information Technologies at the Technological University (UTEC). I am a student committed to continuous growth and constant improvement, with the desire to carry out my personal projects, creating solutions to help those who may require them, improving my soft skills, and increasingly forming my professional profile. I stand out for my discreet and respectful approach at work, and my solid knowledge and facilities in the use of computer tools, such as programming languages, and different pieces of software for testing, automation, and DevOps.",
+            intro_text: "My name is Federico, I am 22 years old, and I live in Montevideo, Uruguay. I am currently in my 8th semester of Bachelor in Information Technology at Universidad Tecnologica (UTEC), and studying for a DevOps Certification at ORT University in Uruguay.\nI am a student committed to my continuous development and constant personal improvement. I stand out for my punctuality and responsibility, my positive and discreet attitude, my constant willingness to learn, and my efficiency at work, which allows me to perform various duties to continue learning, broadening my skills, and progressing further in the development of my professional career.",
             studies_title: "Studies",
             studies_text: [
                 { date: "2025", title: "DevOps Certification", location: "ORT University Uruguay" },
@@ -58,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "#" }
             ],
             personal_projects_title: "Personal Projects",
-            personal_projects_text: "Personal projects will be displayed here.",
+            personal_projects_text: "Here I will show my personal projects.",
             footer_text: "© 2025 Federico Roldos"
         }
     };
