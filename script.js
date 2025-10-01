@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const translations = {
         es: {
             wip_banner: "Sitio en construcción. Versión final próximamente.",
-            header_name: "Federico Roldos",
+            header_name: "Federico Roldós",
             name: "Federico Roldós",
             about_me_title: "Sobre Mí",
             intro_text: "Mi nombre es Federico, tengo 22 años y vivo en Montevideo, Uruguay. Estoy cursando el semestre 8 de Licenciatura en Tecnologías de la Información en la Universidad Tecnológica (UTEC), y Certificación en DevOps en Universidad ORT, en Uruguay.\nSoy un estudiante dedicado a mi continuo desarrollo y a la mejora personal constante, destaco por mi puntualidad y responsabilidad, mi actitud positiva y discreta, mi voluntad permanente al aprendizaje, y mi eficiencia en el trabajo, lo cual me realizar diversas tareas para continuar aprendiendo, ampliando mis habilidades y a progresando más en el desarrollo de mi carrera profesional.",
@@ -31,11 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             personal_projects_title: "Proyectos Personales",
             personal_projects_text: "Aquí mostraré mis proyectos personales.",
-            footer_text: "© 2025 Federico Roldos"
+            footer_text: "© 2025 Federico Roldós"
         },
         en: {
             wip_banner: "Site under construction. Final version coming soon.",
-            header_name: "Federico Roldos",
+            header_name: "Federico Roldós",
             name: "Federico Roldós",
             about_me_title: "About Me",
             intro_text: "My name is Federico, I am 22 years old, and I live in Montevideo, Uruguay. I am currently in my 8th semester of Bachelor in Information Technology at Universidad Tecnologica (UTEC), and studying for a DevOps Certification at ORT University in Uruguay.\nI am a student committed to my continuous development and constant personal improvement. I stand out for my punctuality and responsibility, my positive and discreet attitude, my constant willingness to learn, and my efficiency at work, which allows me to perform various duties to continue learning, broadening my skills, and progressing further in the development of my professional career.",
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             personal_projects_title: "Personal Projects",
             personal_projects_text: "Here I will show my personal projects.",
-            footer_text: "© 2025 Federico Roldos"
+            footer_text: "© 2025 Federico Roldós"
         }
     };
 
