@@ -19,57 +19,51 @@ body {
     overflow-x: hidden;
 }
 
-.modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#wip-toast {
     position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal.hidden {
-    display: none;
-}
-
-.modal-content {
+    bottom: 20px;
+    left: 20px;
     background-color: var(--card-background);
     color: var(--text-color);
-    margin: auto;
-    padding: 25px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 15px;
-    position: relative;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    font-size: 1.1rem;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    opacity: 1;
 }
 
-.close-button {
+#wip-toast.hidden {
+    transform: translateX(-200%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#wip-toast p {
+    margin: 0;
+    color: inherit;
+    white-space: normal;
+}
+
+.close-toast-button {
     color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: var(--text-color);
-    text-decoration: none;
     cursor: pointer;
+    transition: color 0.2s;
 }
 
-body.dark-mode .modal-content {
-    border-color: #555;
+.close-toast-button:hover {
+    color: var(--text-color);
+}
+
+body.dark-mode #wip-toast {
+    background-color: #4a5a6a;
+    color: #ecf0f1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 header {
