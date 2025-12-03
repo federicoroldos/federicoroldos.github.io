@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             intro_text: "Soy Federico, tengo 22 años y vivo en Uruguay. Estoy cursando el semestre 8 de la carrera Licenciatura en Tecnologías de la Información en la Universidad Tecnológica (UTEC) y recientemente obtuve la certificación en DevOps de la Universidad ORT.\nSoy un estudiante comprometido con mi desarrollo continuo y la mejora personal. Me caracterizo por ser puntual, responsable y discreto, y estar siempre dispuesto a aprender y asumir nuevas tareas para seguir creciendo profesionalmente.",
             studies_title: "Estudios",
             studies_text: [
-                { date: "2025", title: "Certificación en DevOps", location: "Universidad ORT Uruguay" },
+                { date: "2025", title: "Certificación en DevOps", location: "Universidad ORT Uruguay (Montevideo, Uruguay)" },
                 { date: "2021 – Actualidad", title: "Licenciatura en Tecnologías de la Información", location: "Universidad Tecnológica - UTEC (Fray Bentos, Uruguay)" },
                 { date: "2023", title: "Programa de Intercambio Estudiantil", location: "Karelia University of Applied Sciences (Joensuu, Finlandia)" },
                 { date: "2018 – 2020", title: "Bachillerato Físico-Matemático", location: "Liceo N°1 José María Campos (Mercedes, Uruguay)" },
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             intro_text: "I am Federico, I am 22 years old, and I live in Uruguay. I am currently doing the 8th semester of the Bachelor's in Information Technologies carreer at Universidad Tecnológica (UTEC) and recently earned the DevOps certification from Universidad ORT.\nI am a student committed to my continuous development and personal improvement. I am known for being punctual, responsible, and discreet, and I am always willing to learn and take on new tasks to continue growing professionally.",
             studies_title: "Studies",
             studies_text: [
-                { date: "2025", title: "DevOps Certification", location: "Universidad ORT Uruguay" },
+                { date: "2025", title: "DevOps Certification", location: "Universidad ORT Uruguay (Montevideo, Uruguay)" },
                 { date: "2021 – Present", title: "Bachelor's in Information Technologies", location: "Universidad Tecnológica - UTEC (Fray Bentos, Uruguay)" },
                 { date: "2023", title: "Student Exchange Program", location: "Karelia University of Applied Sciences (Joensuu, Finland)" },
                 { date: "2018 – 2020", title: "Physics-Mathematics Baccalaureate", location: "High School N°1 José María Campos (Mercedes, Uruguay)" },
