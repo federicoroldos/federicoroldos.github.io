@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Federico Roldós | Coming Soon</title>
+    <meta name="description" content="Federico Roldós' site is under construction and will be available soon.">
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main { padding-top: 40px; }
+        .coming-hero { text-align: center; }
+        .coming-hero h1 { margin-top: 1rem; }
+        .coming-hero .certification-button { margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="coming-soon" class="coming-hero">
+            <h2><i class="fas fa-tools"></i> Site under construction</h2>
+            <h1>Coming soon</h1>
+            <p>I am working on the release of my landing webpage. Soon it will be possible to see my projects, certifications, and experiences.</p>
+            <div class="certifications-container">
+                <a class="certification-button" href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a class="certification-button" href="https://github.com/federicoroldos" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© <span id="year"></span> Federico Roldós</p>
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelectorAll('section').forEach(section => section.classList.add('visible'));
+    </script>
+</body>
+</html>
