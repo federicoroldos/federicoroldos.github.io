@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Federico Roldós</title>
+    <meta name="description" content="Portafolio de Federico Roldós: información, experiencia, estudios y certificaciones en tecnología y DevOps.">
+    <meta property="og:title" content="Federico Roldós">
+    <meta property="og:description" content="Portafolio de Federico Roldós: información, experiencia, estudios y certificaciones en tecnología y DevOps.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/profile.jpg">
+    <meta property="og:url" content="https://federicoroldos.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Federico Roldós">
+    <meta name="twitter:description" content="Portafolio de Federico Roldós: información, experiencia, estudios y certificaciones en tecnología y DevOps.">
+    <meta name="twitter:image" content="images/profile.jpg">
     <link rel="icon" href="images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -16,18 +26,17 @@
     <header>
         <nav>
             <div class="header-profile">
-                <img src="images/profile.jpg" alt="Federico Roldós" class="header-pic">
-                <span data-key="header_name">Federico Roldos</span>
+                <img src="images/profile.jpg" alt="Federico Roldós" class="header-pic" loading="lazy">
+                <span data-key="header_name">Federico Roldós</span>
             </div>
             <div class="nav-right">
                 <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/federicoroldos/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/federicoroldos" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/federicoroldos" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                 </div>
-                <button id="dark-mode-toggle" class="dark-mode-button"><i class="fas fa-moon"></i></button>
                 <div class="language-selector">
-                    <button id="lang-es">ES</button>
-                    <button id="lang-en">EN</button>
+                    <button id="lang-es" aria-label="Cambiar a español">ES</button>
+                    <button id="lang-en" aria-label="Switch to English">EN</button>
                 </div>
             </div>
         </nav>
@@ -35,8 +44,8 @@
     <main>
         <section id="intro">
             <h2 data-key="about_me_title"></h2>
-            <img src="images/profile.jpg" alt="Federico Roldós" id="profile-pic">
-            <h1 data-key="name">Federico Roldos</h1>
+            <img src="images/profile.jpg" alt="Federico Roldós" id="profile-pic" loading="lazy">
+            <h1 data-key="name">Federico Roldós</h1>
             <p data-key="intro_text"></p>
         </section>
         <section id="studies">
@@ -59,8 +68,8 @@
         </section>
         <section id="personal-projects">
             <h2 data-key="personal_projects_title"><i class="fas fa-code"></i> </h2>
-            <div class="personal-projects-container" data-key="personal_projects_text">
-                <!-- Personal projects will be generated here -->
+            <div class="timeline personal-projects-container" data-key="personal_projects_text">
+                <!-- Personal projects will be generated here by script.js -->
             </div>
         </section>
     </main>

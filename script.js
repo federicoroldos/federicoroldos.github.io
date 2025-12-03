@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
             wip_banner: "Sitio en construcción. Versión final próximamente.",
             header_name: "Federico Roldós",
             name: "Federico Roldós",
-            about_me_title: "Sobre Mí",
-            intro_text: "Mi nombre es Federico, tengo 22 años y vivo en Montevideo, Uruguay. Estoy cursando el semestre 8 de Licenciatura en Tecnologías de la Información en la Universidad Tecnológica (UTEC), y Certificación en DevOps en Universidad ORT, en Uruguay.\nSoy un estudiante dedicado a mi continuo desarrollo y a la mejora personal constante, destaco por mi puntualidad y responsabilidad, mi actitud positiva y discreta, mi voluntad permanente al aprendizaje, y mi eficiencia en el trabajo, lo cual me realizar diversas tareas para continuar aprendiendo, ampliando mis habilidades y a progresando más en el desarrollo de mi carrera profesional.",
+            about_me_title: "Sobre mí",
+            intro_text: "Mi nombre es Federico, tengo 22 años y vivo en Montevideo, Uruguay. Estoy cursando el semestre 8 de la Licenciatura en Tecnologías de la Información en la Universidad Tecnológica (UTEC) y la certificación en DevOps en la Universidad ORT, en Uruguay.\nSoy un estudiante dedicado a mi desarrollo continuo y a la mejora personal constante; destaco por mi puntualidad y responsabilidad, mi actitud positiva y discreta, mi voluntad permanente de aprendizaje y mi eficiencia en el trabajo, lo cual me permite realizar diversas tareas para seguir aprendiendo, ampliar mis habilidades y progresar en mi carrera profesional.",
             studies_title: "Estudios",
             studies_text: [
-                { date: "2025", title: "Certificacion en DevOps", location: "Universidad ORT Uruguay" },
+                { date: "2025", title: "Certificación en DevOps", location: "Universidad ORT Uruguay" },
                 { date: "2021 – Actualidad", title: "Licenciatura en Tecnologías de la Información", location: "Universidad Tecnológica - UTEC (Fray Bentos, Uruguay)" },
                 { date: "2023", title: "Programa de Intercambio Estudiantil", location: "Karelia University of Applied Sciences (Joensuu, Finlandia)" },
                 { date: "2018 – 2020", title: "Bachillerato Físico-Matemático", location: "Liceo N°1 José María Campos (Mercedes, Uruguay)" },
@@ -23,14 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             projects_title: "Certificaciones",
             projects_text: [
-                { name: "Certificacion en DevOps", url: "#" },
+                { name: "Certificación en DevOps", url: "#" },
                 { name: "Learning Paths in Microsoft Learn - Power Platform", url: "#" },
                 { name: "Learning Paths on Microsoft Learn - Microsoft Azure Fundamentals", url: "#" },
                 { name: "Google Cloud Computing Fundamentals Certificate", url: "#" },
                 { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "#" }
             ],
             personal_projects_title: "Proyectos Personales",
-            personal_projects_text: "Aquí mostraré mis proyectos personales.",
+            personal_projects_text: [
+                { date: "2025", title: "Web personal", location: "Montevideo, Uruguay (remoto)", description: "Esta página como un proyecto breve para organizar y mostrar mis habilidades, estudios y certificaciones en un solo lugar." }
+            ],
             footer_text: "© 2025 Federico Roldós"
         },
         en: {
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             header_name: "Federico Roldós",
             name: "Federico Roldós",
             about_me_title: "About Me",
-            intro_text: "My name is Federico, I am 22 years old, and I live in Montevideo, Uruguay. I am currently in my 8th semester of Bachelor in Information Technology at Universidad Tecnologica (UTEC), and studying for a DevOps Certification at ORT University in Uruguay.\nI am a student committed to my continuous development and constant personal improvement. I stand out for my punctuality and responsibility, my positive and discreet attitude, my constant willingness to learn, and my efficiency at work, which allows me to perform various duties to continue learning, broadening my skills, and progressing further in the development of my professional career.",
+            intro_text: "My name is Federico, I am 22 years old, and I live in Montevideo, Uruguay. I am currently in my 8th semester of a Bachelor's in Information Technologies at Universidad Tecnológica (UTEC) and pursuing a DevOps certification at ORT University in Uruguay.\nI am committed to continuous development and personal improvement. I stand out for my punctuality and responsibility, my positive and discreet attitude, my willingness to learn, and my efficiency at work, which allows me to take on various tasks to keep learning, broaden my skills, and keep advancing in my professional career.",
             studies_title: "Studies",
             studies_text: [
                 { date: "2025", title: "DevOps Certification", location: "ORT University Uruguay" },
@@ -60,7 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "#" }
             ],
             personal_projects_title: "Personal Projects",
-            personal_projects_text: "Here I will show my personal projects.",
+            personal_projects_text: [
+                { date: "2024", title: "Personal site", location: "Montevideo, Uruguay (remote)", description: "This page as a short project to organize and showcase my skills, studies, and certifications in one place." }
+            ],
             footer_text: "© 2025 Federico Roldós"
         }
     };
@@ -83,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     button.textContent = cert.name;
                     element.appendChild(button);
                 });
-            } else if (key === 'studies_text' || key === 'experience_text') {
+            } else if (key === 'studies_text' || key === 'experience_text' || key === 'personal_projects_text') {
                 element.innerHTML = '';
                 translations[language][key].forEach(item => {
                     const itemDiv = document.createElement('div');
@@ -120,20 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
         wipToast.classList.add('hidden');
     });
 
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-
-    darkModeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        const icon = darkModeToggle.querySelector('i');
-        if (body.classList.contains('dark-mode')) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        }
-    });
 
     // Scroll animations
     const sections = document.querySelectorAll('section');
