@@ -19,46 +19,6 @@ body {
     overflow-x: hidden;
 }
 
-#wip-toast {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: var(--card-background);
-    color: var(--text-color);
-    padding: 15px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
-    opacity: 1;
-}
-
-#wip-toast.hidden {
-    transform: translateX(-200%);
-    opacity: 0;
-    pointer-events: none;
-}
-
-#wip-toast p {
-    margin: 0;
-    color: inherit;
-    white-space: normal;
-}
-
-.close-toast-button {
-    color: #aaa;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.close-toast-button:hover {
-    color: var(--text-color);
-}
 
 header {
     background: transparent;
