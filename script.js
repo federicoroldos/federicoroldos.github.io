@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             experience_title: "Work Experience",
             experience_text: [
-                { date: "2022 – 2023", title: "Intern", location: "Emprende Tech SAS (Mercedes, Uruguay)", description: "6-month internship at Emprende Tech SAS, a company focused on digital transformation for entrepreneurs and professionals. I participated in a digital transformation project for El Abrojo using Microsoft Power Platform solutions (Power Automate, Power Virtual Agents, SharePoint, Microsoft Forms, and Microsoft Dataverse)." }
+                { date: "2022 – 2023", title: "Trainee", location: "Emprende Tech SAS (Mercedes, Uruguay)", description: "6-month internship at Emprende Tech SAS, a company focused on digital transformation for entrepreneurs and professionals. I participated in a digital transformation project for El Abrojo using Microsoft Power Platform solutions (Power Automate, Power Virtual Agents, SharePoint, Microsoft Forms, and Microsoft Dataverse)." }
             ],
             projects_title: "Certifications",
             projects_text: [
