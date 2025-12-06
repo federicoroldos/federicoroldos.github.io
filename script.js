@@ -22,14 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             projects_title: "Certificaciones",
             projects_text: [
-                { name: "Certificación en DevOps", url: "#" },
-                { name: "Learning Paths in Microsoft Learn - Power Platform", url: "#" },
-                { name: "Learning Paths on Microsoft Learn - Microsoft Azure Fundamentals", url: "#" },
-                { name: "Google Cloud Computing Fundamentals Certificate", url: "#" },
-                { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "#" }
+                { name: "Certificación en DevOps", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" },
+                { name: "Learning Paths in Microsoft Learn - Power Platform", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" },
+                { name: "Learning Paths on Microsoft Learn - Microsoft Azure Fundamentals", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" },
+                { name: "Google Cloud Computing Fundamentals Certificate", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" },
+                { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" }
             ],
             personal_projects_title: "Proyectos Personales",
             personal_projects_text: [
+                { date: "2025", title: "Game Completion Tracker", location: "Montevideo, Uruguay (remoto)", description: "Aplicación web para seguir y visualizar el progreso de juegos completados.", url: "https://github.com/federicoroldos/gamesCompletitionTracker" },
                 { date: "2025", title: "Web personal", location: "Montevideo, Uruguay (remoto)", description: "Esta misma página, como hub central donde organizar y mostrar mis habilidades, estudios y certificaciones en un solo lugar." }
             ],
             footer_text: "© 2025 Federico Roldós"
@@ -53,14 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             projects_title: "Certifications",
             projects_text: [
-                { name: "DevOps Certification", url: "#" },
-                { name: "Learning Paths in Microsoft Learn - Power Platform", url: "#" },
-                { name: "Learning Paths on Microsoft Learn - Microsoft Azure Fundamentals", url: "#" },
-                { name: "Google Cloud Computing Fundamentals Certificate", url: "#" },
-                { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "#" }
+                { name: "DevOps Certification", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" },
+                { name: "Learning Paths in Microsoft Learn - Power Platform", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" },
+                { name: "Learning Paths on Microsoft Learn - Microsoft Azure Fundamentals", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" },
+                { name: "Google Cloud Computing Fundamentals Certificate", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" },
+                { name: "AWS Academy Graduate - AWS Academy Cloud Foundations", url: "https://www.linkedin.com/in/federicoroldos/details/certifications/" }
             ],
             personal_projects_title: "Personal Projects",
             personal_projects_text: [
+                { date: "2025", title: "Game Completion Tracker", location: "Montevideo, Uruguay (remote)", description: "Web app to track and visualize game completion progress.", url: "https://github.com/federicoroldos/gamesCompletitionTracker" },
                 { date: "2025", title: "Personal site", location: "Montevideo, Uruguay (remote)", description: "This very site, as a central hub where I can organize and showcase my skills, studies, and certifications in one place." }
             ],
             footer_text: "© 2025 Federico Roldós"
@@ -104,8 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (key === 'personal_projects_text') {
                 element.innerHTML = '';
                 translations[language][key].forEach(item => {
-                    const card = document.createElement('article');
-                    card.className = 'project-card';
+                    const card = item.url ? document.createElement('a') : document.createElement('article');
+                    card.className = item.url ? 'project-card project-card-link' : 'project-card';
+                    if (item.url) {
+                        card.href = item.url;
+                        card.target = '_blank';
+                        card.rel = 'noopener noreferrer';
+                    }
                     card.innerHTML = `
                         <div class="project-meta">
                             <span class="project-year">${item.date}</span>
@@ -127,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     langEnBtn.addEventListener('click', () => updateText('en'));
 
     // Set initial language
-    updateText('es');
+    updateText('en');
 
 
     // Scroll animations

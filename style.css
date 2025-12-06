@@ -257,8 +257,8 @@ p {
 }
 .personal-projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
     margin-top: 1rem;
 }
 
@@ -302,6 +302,16 @@ p {
     margin: 0 0 0.5rem 0;
     font-size: 1.3rem;
     color: #222;
+}
+
+.project-card-link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.project-card-link:hover {
+    color: inherit;
 }
 
 .project-description {
