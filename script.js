@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             personal_projects_title: "Proyectos Personales",
             personal_projects_text: [
-                { date: "2025", title: "Web personal", location: "Montevideo, Uruguay (remoto)", description: "Esta página como un proyecto breve para organizar y mostrar mis habilidades, estudios y certificaciones en un solo lugar." }
+                { date: "2025", title: "Web personal", location: "Montevideo, Uruguay (remoto)", description: "Esta misma página, como hub central donde organizar y mostrar mis habilidades, estudios y certificaciones en un solo lugar." }
             ],
             footer_text: "© 2025 Federico Roldós"
         },
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             personal_projects_title: "Personal Projects",
             personal_projects_text: [
-                { date: "2025", title: "Personal site", location: "Montevideo, Uruguay (remote)", description: "This page as a short project to organize and showcase my skills, studies, and certifications in one place." }
+                { date: "2025", title: "Personal site", location: "Montevideo, Uruguay (remote)", description: "This very site, as a central hub where I can organize and showcase my skills, studies, and certifications in one place." }
             ],
             footer_text: "© 2025 Federico Roldós"
         }
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     button.textContent = cert.name;
                     element.appendChild(button);
                 });
-            } else if (key === 'studies_text' || key === 'experience_text' || key === 'personal_projects_text') {
+            } else if (key === 'studies_text' || key === 'experience_text') {
                 element.innerHTML = '';
                 translations[language][key].forEach(item => {
                     const itemDiv = document.createElement('div');
@@ -100,6 +100,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `;
                     element.appendChild(itemDiv);
+                });
+            } else if (key === 'personal_projects_text') {
+                element.innerHTML = '';
+                translations[language][key].forEach(item => {
+                    const card = document.createElement('article');
+                    card.className = 'project-card';
+                    card.innerHTML = `
+                        <div class="project-meta">
+                            <span class="project-year">${item.date}</span>
+                            <span class="project-location">${item.location}</span>
+                        </div>
+                        <h3 class="project-title">${item.title}</h3>
+                        ${item.description ? `<p class="project-description">${item.description}</p>` : ''}
+                    `;
+                    element.appendChild(card);
                 });
             } else {
                 element.textContent = translations[language][key];
