@@ -1,51 +1,307 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Federico Roldós | Coming Soon</title>
-    <meta name="description" content="Federico Roldós' site is under construction and will be available soon.">
+    <title>Federico Roldos | IT Student & DevOps</title>
+    <meta name="description" content="Federico Roldos - IT student and DevOps-certified technologist in Montevideo, Uruguay. Experience across full-stack delivery, automation, and infrastructure.">
+    <meta property="og:title" content="Federico Roldos | IT Student & DevOps">
+    <meta property="og:description" content="Experience, education, projects, and technologies from Federico Roldos' CV.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/profile-placeholder.svg">
+    <meta property="og:url" content="https://roldos.site">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Federico Roldos | IT Student & DevOps">
+    <meta name="twitter:description" content="Experience, education, projects, and technologies from Federico Roldos' CV.">
+    <meta name="twitter:image" content="images/profile-placeholder.svg">
     <link rel="icon" href="images/logo.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="./style.css?v=comingsoon">
-    <style>
-        html, body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        }
-        main {
-            padding-top: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #coming-soon {
-            margin: 2rem;
-        }
-        .coming-hero { text-align: center; }
-        .coming-hero h1 { margin-top: 1rem; }
-        .coming-hero .certification-button { margin-top: 1rem; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="ambient-bg" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <header class="site-header" id="top">
+        <nav class="nav">
+            <a class="brand" href="#top" aria-label="Go to top">
+                <span class="brand-text">Federico Roldos</span>
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#technologies">Technologies</a>
+                <a href="#languages">Languages</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
     <main>
-        <section id="coming-soon" class="coming-hero">
-            <h2><i class="fas fa-tools"></i> Site under construction</h2>
-            <h1>Coming soon</h1>
-            <p>I am working on the release of my landing webpage. Soon it will be possible to see my projects, certifications, and experiences.</p>
-            <div class="certifications-container">
-                <a class="certification-button" href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a class="certification-button" href="https://github.com/federicoroldos" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content" data-reveal>
+                <p class="eyebrow">IT Student · DevOps Certified · Full-Stack Builder</p>
+                <h1 id="hero-title">I build the systems behind the product, and the product itself.</h1>
+                <p class="hero-lead">
+                    I am Federico Roldos, based in Montevideo, Uruguay. My work sits at the intersection of
+                    software engineering, infrastructure, and automation.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn primary" href="mailto:federicoroldos1@gmail.com?subject=Hello%20Federico&body=Hi%20Federico%2C%0A%0A">Email Me</a>
+                    <a class="btn ghost" href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+                <div class="hero-meta">
+                    <div>
+                        <span class="meta-label">Location</span>
+                        <span>Montevideo, Uruguay</span>
+                    </div>
+                    <div>
+                        <span class="meta-label">Current</span>
+                        <span>UTEC — BSc in IT (2021 - Present)</span>
+                    </div>
+                    <div>
+                        <span class="meta-label">Certification</span>
+                        <span>DevOps — ORT University (2025)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-card" data-reveal>
+                <div class="card-details">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><span>Email</span><a href="mailto:federicoroldos1@gmail.com">federicoroldos1@gmail.com</a></li>
+                        <li><span>GitHub</span><a href="https://github.com/federicoroldos" target="_blank" rel="noopener noreferrer">github.com/federicoroldos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section" aria-labelledby="about-title">
+            <div class="section-heading" data-reveal>
+                <p class="eyebrow">Profile</p>
+                <h2 id="about-title">I like the more challenging parts: infrastructure, automation, and the edge cases.</h2>
+            </div>
+            <div class="section-grid" data-reveal>
+                <p>
+                    I am a Bachelor&apos;s student in Information Technology at UTEC. My path has been a mix
+                    of software engineering, cloud fundamentals, and hands-on system administration.
+                </p>
+                <p>
+                    Along the way, I&apos;ve worked on a hospital equipment management system, a DevOps
+                    graduation project, and long-running game server infrastructure. I enjoy clear
+                    documentation and practical automation.
+                </p>
+            </div>
+        </section>
+
+        <section id="experience" class="section" aria-labelledby="experience-title">
+            <div class="section-heading" data-reveal>
+                <p class="eyebrow">Experience</p>
+                <h2 id="experience-title">From digital transformation to full-stack delivery.</h2>
+            </div>
+            <div class="timeline" data-reveal>
+                <article class="timeline-card">
+                    <div class="timeline-meta">
+                        <span>2024</span>
+                        <span>Fray Bentos, Uruguay</span>
+                    </div>
+                    <h3><a href="https://www.linkedin.com/posts/santiago-aboal-71425626a_hola-red-vengo-a-mostrar-un-poco-de-activity-7290005317906530304-TETB?utm_source=share&utm_medium=member_desktop&rcm=ACoAADSmO3wBMQOyeo3Atpm3mcnWrUzyn-SEP7A" target="_blank" rel="noopener noreferrer">Project Manager — Final Degree Project (UTEC)</a></h3>
+                    <p>
+                        Coordinated the planning and delivery of a full-stack application built from scratch
+                        to manage hospital equipment and assets. We centralized data that had been scattered
+                        across manual processes, improving traceability, maintenance tracking, and access
+                        control through a structured backend and relational database. Built and shipped in
+                        Scrum milestones with a simulated client-team workflow across web, mobile, backend,
+                        and infrastructure.
+                    </p>
+                </article>
+                <article class="timeline-card">
+                    <div class="timeline-meta">
+                        <span>2025</span>
+                        <span>Montevideo, Uruguay</span>
+                    </div>
+                    <h3><a href="https://github.com/federicoroldos/obl-devops" target="_blank" rel="noopener noreferrer">DevOps Graduation Project — ORT University</a></h3>
+                    <p>
+                        Final project for the DevOps certification. Designed and implemented an automated
+                        workflow for build, deployment, and infrastructure management. Worked with
+                        containerization, CI/CD pipelines, cloud fundamentals, and monitoring to keep
+                        deployments repeatable and documented.
+                    </p>
+                </article>
+                <article class="timeline-card">
+                    <div class="timeline-meta">
+                        <span>2022 - 2023</span>
+                        <span>Mercedes, Uruguay</span>
+                    </div>
+                    <h3>Trainee - Emprende Tech SAS</h3>
+                    <p>
+                        Completed a 6-month internship focused on digital transformation. Contributed to
+                        the El Abrojo project using Microsoft Power Platform tools including Power Automate,
+                        Power Virtual Agents, SharePoint, Microsoft Forms, and Dataverse.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="education" class="section" aria-labelledby="education-title">
+            <div class="section-heading" data-reveal>
+                <p class="eyebrow">Education</p>
+                <h2 id="education-title">A mix of IT foundations, DevOps focus, and international study.</h2>
+            </div>
+            <div class="cards" data-reveal>
+                <article class="info-card">
+                    <h3>Technological University UTEC</h3>
+                    <p>Bachelor&apos;s Degree in Information Technology</p>
+                    <span>Montevideo, Uruguay · 2021 - Present</span>
+                    <p class="muted">Software Engineering, Databases, Operating Systems, Computer Networks, Web Development, Systems Analysis, Cloud Computing Fundamentals.</p>
+                </article>
+                <article class="info-card">
+                    <h3>Karelia University of Applied Sciences</h3>
+                    <p>Student Exchange Program</p>
+                    <span>Joensuu, Finland · 2023</span>
+                    <p class="muted">ICT Business, Programming (Python), IT Infrastructure Architecture, Digital Technology Essentials, Working in International Teams, Intercultural Communication Competence, Finnish.</p>
+                </article>
+                <article class="info-card">
+                    <h3>ORT University</h3>
+                    <p>DevOps Certification</p>
+                    <span>Montevideo, Uruguay · 2025</span>
+                    <p class="muted">DevOps Methodology, Linux & CLI, Git, Automation, CI/CD, DevSecOps, Cloud (IaaS/PaaS/SaaS), Docker, Kubernetes, IaC, Observability and Metrics.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" class="section" aria-labelledby="projects-title">
+            <div class="section-heading" data-reveal>
+                <p class="eyebrow">Projects</p>
+                <h2 id="projects-title">Projects that taught me discipline: servers, uptime, and real users.</h2>
+            </div>
+            <div class="cards" data-reveal>
+                <article class="project-card">
+                    <h3>Minecraft Server Hosting, Plugins, and Modding</h3>
+                    <p class="muted">Ongoing</p>
+                    <p>Started as a server for friends and turned into years of server administration, custom plugins, and community maintenance.</p>
+                    <ul>
+                        <li>Handled OS configuration, permissions, performance tuning, and troubleshooting.</li>
+                        <li>Built and customized plugins and mods across Spigot, Bukkit, Forge, and Fabric.</li>
+                        <li>Owned updates, backups, monitoring, and long-term stability.</li>
+                    </ul>
+                </article>
+                <article class="project-card">
+                    <h3>Game Server Infrastructure, OS, and Hardware Administration</h3>
+                    <p class="muted">Ongoing</p>
+                    <p>Hands-on work configuring physical machines and virtual servers for real traffic and real expectations.</p>
+                    <ul>
+                        <li>Built and optimized hardware, from selection to system tuning.</li>
+                        <li>Hosted and managed Hytale servers, plus Ark and Assetto Corsa.</li>
+                        <li>Managed networking, virtualization, and OS administration.</li>
+                    </ul>
+                </article>
+                <article class="project-card">
+                    <h3>Personal Website Hosting and Deployment</h3>
+                    <p class="muted">Ongoing</p>
+                    <p>A personal space to ship experiments, showcase work, and keep learning visible.</p>
+                    <ul>
+                        <li>Own the full lifecycle: hosting, deployment, updates, and maintenance.</li>
+                        <li>Track changes in Git with clear documentation and a tidy history.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="technologies" class="section" aria-labelledby="technologies-title">
+            <div class="section-heading" data-reveal>
+                <p class="eyebrow">Technologies</p>
+                <h2 id="technologies-title">Tooling across frontend, backend, data, and DevOps.</h2>
+            </div>
+            <div class="tech-grid" data-reveal>
+                <div>
+                    <h3>Languages</h3>
+                    <p>Java, Python, JavaScript, Kotlin</p>
+                </div>
+                <div>
+                    <h3>Web & Frontend</h3>
+                    <p>React, Next.js</p>
+                </div>
+                <div>
+                    <h3>Backend & APIs</h3>
+                    <p>Jakarta EE, REST APIs</p>
+                </div>
+                <div>
+                    <h3>Databases</h3>
+                    <p>Oracle Database, SQL Server</p>
+                </div>
+                <div>
+                    <h3>DevOps & Cloud</h3>
+                    <p>Docker, CI/CD, GitHub Actions, AWS, GCP, Azure</p>
+                </div>
+                <div>
+                    <h3>Systems & Networking</h3>
+                    <p>Linux, Windows Server</p>
+                </div>
+                <div>
+                    <h3>Game Server Tech</h3>
+                    <p>Spigot, Bukkit, Forge, Fabric</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages" class="section" aria-labelledby="languages-title">
+            <div class="section-heading" data-reveal>
+                <p class="eyebrow">Languages</p>
+                <h2 id="languages-title">How I communicate.</h2>
+            </div>
+            <div class="language-cards" data-reveal>
+                <article>
+                    <h3>Spanish</h3>
+                    <p>Native</p>
+                </article>
+                <article>
+                    <h3>English</h3>
+                    <p>C1</p>
+                </article>
+                <article>
+                    <h3>Finnish</h3>
+                    <p>A1</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact" aria-labelledby="contact-title">
+            <div class="section-heading" data-reveal>
+                <p class="eyebrow">Contact</p>
+                <h2 id="contact-title">If you need to contact me.</h2>
+            </div>
+            <div class="contact-grid" data-reveal>
+                <div>
+                    <p>I&apos;m open to internships, full-time development, and project collaborations.</p>
+                    <div class="hero-actions">
+                        <a class="btn primary" href="mailto:federicoroldos1@gmail.com">Start a conversation</a>
+                        <a class="btn ghost" href="https://github.com/federicoroldos" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <p>Based in Montevideo, Uruguay</p>
+                    <p>Available for remote and onsite work</p>
+                </div>
             </div>
         </section>
     </main>
-    <footer>
-        <p>© <span id="year"></span> Federico Roldós</p>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year"></span> Federico Roldos. All rights reserved.</p>
     </footer>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-        document.querySelectorAll('section').forEach(section => section.classList.add('visible'));
-    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
