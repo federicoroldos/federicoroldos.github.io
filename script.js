@@ -288,7 +288,7 @@ async function handleFormSubmit(e) {
 
     if (!endpoint) {
         const configError = AppState.currentLang === 'es'
-            ? 'No se encontro la configuracion del formulario.'
+            ? 'No se encontró la configuración del formulario.'
             : 'Form configuration is missing.';
         setFormStatus(statusElement, 'error', configError);
         return;
@@ -341,7 +341,7 @@ async function handleFormSubmit(e) {
 
         form.reset();
         const successMessage = AppState.currentLang === 'es'
-            ? 'Mensaje enviado con exito. Te respondere pronto.'
+            ? 'Mensaje enviado con éxito. Te responderé pronto.'
             : 'Message sent successfully. I will reply soon.';
         setFormStatus(statusElement, 'success', successMessage);
     } catch (error) {
