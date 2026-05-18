@@ -203,7 +203,7 @@ body {
 .t-out { color: #9da4b7; }
 .t-code { margin: 8px 0; color: #cfd3df; white-space: pre; font-family: inherit; font-size: 0.83rem; line-height: 1.55; }
 .t-key { color: #c4b5fd; } .t-str { color: #86efac; } .t-brace { color: #f0abfc; }
-.cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent-2); vertical-align: middle; animation: blink 1s steps(2) infinite; }
+.cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent-2); vertical-align: middle; animation: blink 1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
 /* About */
@@ -362,6 +362,7 @@ body {
 .reveal.visible { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
+  .cursor { animation: blink 1s step-end infinite !important; }
 }
