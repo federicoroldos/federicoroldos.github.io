@@ -1,823 +1,496 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Federico Rold&oacute;s | Software Engineer</title>
-    <meta name="description" content="Federico Rold&oacute;s is an IT student and software engineer focused on backend development, APIs, infrastructure, and automation.">
-    <meta property="og:title" content="Federico Rold&oacute;s | Software Engineer">
-    <meta property="og:description" content="Experience, projects, education, and contact information.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://roldos.site">
-    
-    <!-- Tailwind CSS (CDN for development only) -->
-    <script>
-        // Suppress Tailwind CDN warning
-        if (typeof console !== 'undefined' && console.warn) {
-            const originalWarn = console.warn;
-            console.warn = function(...args) {
-                if (args[0] && typeof args[0] === 'string' && args[0].includes('tailwindcss.com')) {
-                    return; // Suppress Tailwind CDN warning
-                }
-                originalWarn.apply(console, args);
-            };
-        }
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="shortcut icon" href="favicon.svg">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Federico Roldós - Software Engineer</title>
+  <meta name="description" content="Federico Roldós - IT student and software engineer. Backend, DevOps, infrastructure, and full-stack projects.">
+  <meta property="og:title" content="Federico Roldós - Software Engineer">
+  <meta property="og:description" content="IT student and software engineer. Backend, DevOps, and full-stack projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://roldos.site">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="body-main" data-theme="dark" data-lang="en" data-dir="ltr">
-    
-    <!-- Loading Screen -->
-    <div class="loader-screen" id="loader">
-        <div class="loader-content">
-            <div class="loader-code-text">
-                <div class="code-line" data-line="1">const portfolio = {</div>
-                <div class="code-line" data-line="2">  loading: true,</div>
-                <div class="code-line" data-line="3">  status: 'initializing...'</div>
-                <div class="code-line" data-line="4">};</div>
-            </div>
-            <div class="loader-spinner-wrapper">
-                <div class="loader-spinner"></div>
-            </div>
-            <div class="loader-progress-wrapper">
-                <div class="loader-progress-bar"></div>
-            </div>
-            <div class="loader-percentage" id="loaderPercent">0%</div>
-        </div>
+<body data-theme="dark" data-lang="en">
+
+  <div class="bg-gradient" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <nav class="nav-links" id="navLinks">
+        <a href="#about"      data-i18n-en="About"      data-i18n-es="Sobre mí">About</a>
+        <a href="#experience" data-i18n-en="Experience" data-i18n-es="Experiencia">Experience</a>
+        <a href="#projects"   data-i18n-en="Projects"   data-i18n-es="Proyectos">Projects</a>
+        <a href="#education"  data-i18n-en="Education"  data-i18n-es="Educación">Education</a>
+        <a href="#skills"     data-i18n-en="Skills"     data-i18n-es="Habilidades">Skills</a>
+        <a href="#contact"    data-i18n-en="Contact"    data-i18n-es="Contacto">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="langToggle" class="icon-btn" title="Toggle language" aria-label="Toggle language">
+          <span id="langLabel">ES</span>
+        </button>
+        <button id="themeToggle" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button id="menuToggle" class="icon-btn menu-btn" title="Menu" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <!-- Navigation Header -->
-    <header class="main-header" id="header">
-        <nav class="nav-container">
-            <div class="nav-brand">
-                <div class="brand-logo">
-                    <span class="logo-bracket">&lt;</span>
-                    <span class="logo-text">FR</span>
-                    <span class="logo-bracket">/&gt;</span>
-                </div>
-            </div>
-            
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link active" data-section="home">
-                    <i class="fas fa-home"></i>
-                    <span class="nav-text" data-text-en="Home" data-text-es="Inicio">Home</span>
-                </a>
-                <a href="#about" class="nav-link" data-section="about">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-text" data-text-en="About" data-text-es="Sobre mí">About</span>
-                </a>
-                <a href="#skills" class="nav-link" data-section="skills">
-                    <i class="fas fa-code"></i>
-                    <span class="nav-text" data-text-en="Skills" data-text-es="Habilidades">Skills</span>
-                </a>
-                <a href="#experience" class="nav-link" data-section="experience">
-                    <i class="fas fa-briefcase"></i>
-                    <span class="nav-text" data-text-en="Experience" data-text-es="Experiencia">Experience</span>
-                </a>
-                <a href="#projects" class="nav-link" data-section="projects">
-                    <i class="fas fa-rocket"></i>
-                    <span class="nav-text" data-text-en="Projects" data-text-es="Proyectos">Projects</span>
-                </a>
-                <a href="#education" class="nav-link" data-section="education">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span class="nav-text" data-text-en="Education" data-text-es="Educación">Education</span>
-                </a>
-                <a href="#contact" class="nav-link" data-section="contact">
-                    <i class="fas fa-envelope"></i>
-                    <span class="nav-text" data-text-en="Contact" data-text-es="Contacto">Contact</span>
-                </a>
-            </div>
-            
-            <div class="nav-controls">
-                <button class="lang-toggle" id="langToggle" title="Toggle Language">
-                    <i class="fas fa-language"></i>
-                    <span class="lang-text">ES</span>
-                </button>
-                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="menu-toggle" id="menuToggle" title="Toggle Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
+  <main>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
-            <div class="hero-background">
-                <div class="code-grid-bg"></div>
-                <div class="floating-particles" id="particles"></div>
-            </div>
-            
-            <div class="hero-container">
-                <div class="hero-content">
-                    <div class="hero-greeting">
-                        <span class="greeting-text" data-text-en="Hello, I'm" data-text-es="Hola, soy">Hello, I'm</span>
-                        <span class="greeting-cursor">|</span>
-                    </div>
-                    
-                    <h1 class="hero-name" id="heroName">
-                        <span class="name-prefix">name</span>
-                        <span class="name-operator">=</span>
-                        <span class="name-value">Federico Roldós</span>
-                        <span class="name-suffix">;</span>
-                    </h1>
-                    
-                    <div class="hero-title">
-                        <span class="title-prefix">//</span>
-                        <span class="title-text" data-text-en="Software Engineer" data-text-es="Ingeniero de Software">Software Engineer</span>
-                    </div>
-                    
-                    <p class="hero-description" data-text-en="Building reliable backend systems and practical developer tooling. IT student focused on software engineering, infrastructure, and automation across web platforms and developer workflows." data-text-es="Construyendo sistemas backend confiables y herramientas prácticas para desarrolladores. Estudiante de TI enfocado en ingeniería de software, infraestructura y automatización para plataformas web y flujos de trabajo de desarrollo.">
-                        Building reliable backend systems and practical developer tooling. IT student focused on software engineering, infrastructure, and automation across web platforms and developer workflows.
-                    </p>
-                    
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">
-                            <span data-text-en="Get In Touch" data-text-es="Contáctame">Get In Touch</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#projects" class="btn btn-secondary">
-                            <span data-text-en="View Projects" data-text-es="Ver Proyectos">View Projects</span>
-                            <i class="fas fa-code"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="hero-social">
-                        <a href="https://github.com/federicoroldos" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="mailto:federicoroldos1@gmail.com" class="social-icon" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-image-wrapper">
-                    <div class="hero-image-container">
-                        <div class="profile-image-glow"></div>
-                        <div class="profile-image-frame">
-                            <div class="profile-image" id="profileImage">
-                                <div class="profile-placeholder">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="floating-badge badge-1">
-                            <i class="fas fa-server"></i>
-                            <div class="badge-content">
-                                <span class="badge-title">Backend</span>
-                                <span class="badge-libs">Java, Python, Kotlin, REST APIs</span>
-                            </div>
-                        </div>
-                        <div class="floating-badge badge-2">
-                            <i class="fas fa-cloud"></i>
-                            <div class="badge-content">
-                                <span class="badge-title">Infrastructure</span>
-                                <span class="badge-libs">Servers, Docker, CI/CD, Hosting</span>
-                            </div>
-                        </div>
-                        <div class="floating-badge badge-3">
-                            <i class="fas fa-gears"></i>
-                            <div class="badge-content">
-                                <span class="badge-title">Frontend</span>
-                                <span class="badge-libs">TypeScript, React, Next.js, Vite</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="scroll-indicator">
-                <div class="scroll-mouse">
-                    <div class="scroll-wheel"></div>
-                </div>
-                <span class="scroll-text" data-text-en="Scroll Down" data-text-es="Desplázate hacia abajo">Scroll Down</span>
-            </div>
-        </section>
-
-        <!-- About Section -->
-                <section id="about" class="section about-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">01</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="About" data-text-es="Sobre mí">About</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
-                </div>
-
-                <div class="about-content">
-                    <div class="about-text-wrapper">
-                        <div class="about-intro">
-                            <p class="about-text" data-text-en="IT student based in Montevideo, Uruguay. My work focuses on backend development, APIs, infrastructure, and practical automation for production-ready systems." data-text-es="Estudiante de TI en Montevideo, Uruguay. Mi trabajo se centra en desarrollo backend, APIs, infraestructura y automatización práctica para sistemas listos para producción.">
-                                IT student based in Montevideo, Uruguay. My work focuses on backend development, APIs, infrastructure, and practical automation for production-ready systems.
-                            </p>
-                            <p class="about-text" data-preserve-lines data-text-en="DevOps Certification at ORT University (2025).&#10;Student Exchange Program at Karelia University of Applied Sciences (2023).&#10;Bachelor's Degree in Information Technology at Technological University UTEC (2021 - Present)." data-text-es="Certificación en DevOps en la Universidad ORT (2025).&#10;Programa de intercambio estudiantil en Karelia University of Applied Sciences (2023).&#10;Licenciatura en Tecnologías de la Información en la Universidad Tecnológica UTEC (2021 - Presente).">
-                                DevOps Certification at ORT University (2025).<br>Student Exchange Program at Karelia University of Applied Sciences (2023).<br>Bachelor's Degree in Information Technology at Technological University UTEC (2021 - Present).
-                            </p>
-                        </div>
-
-                        <div class="about-stats">
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="4">0</div>
-                                <div class="stat-label" data-text-en="Featured Projects" data-text-es="Proyectos Destacados">Featured Projects</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="4">0</div>
-                                <div class="stat-label" data-text-en="Experience Roles" data-text-es="Roles de Experiencia">Experience Roles</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="3">0</div>
-                                <div class="stat-label" data-text-en="Education Records" data-text-es="Formación Académica">Education Records</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="about-image-wrapper">
-                        <div class="about-image-container">
-                            <div class="code-block">
-                                <div class="code-line">
-                                    <span class="code-keyword">const</span>
-                                    <span class="code-variable">engineer</span>
-                                    <span class="code-operator">=</span>
-                                    <span class="code-brace">{</span>
-                                </div>
-                                <div class="code-line indent">
-                                    <span class="code-property">name</span>
-                                    <span class="code-operator">:</span>
-                                    <span class="code-string">"Federico Rold&oacute;s"</span>
-                                    <span class="code-comma">,</span>
-                                </div>
-                                <div class="code-line indent">
-                                    <span class="code-property">focus</span>
-                                    <span class="code-operator">:</span>
-                                    <span class="code-string">"Backend &amp; Infrastructure"</span>
-                                    <span class="code-comma">,</span>
-                                </div>
-                                <div class="code-line indent">
-                                    <span class="code-property">stack</span>
-                                    <span class="code-operator">:</span>
-                                    <span class="code-bracket">[</span>
-                                    <span class="code-string">"Java"</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">"Python"</span>
-                                    <span class="code-string">"TypeScript"</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">"React"</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">"Vite"</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">"Git"</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">"TypeScript"</span>
-                                    <span class="code-string">"GitHub Actions &amp; Pages"</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">"Docker"</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">"CI/CD"</span>
-                                    <span class="code-string">"Google APIs & OAuth"</span>
-                                    <span class="code-comma">,</span>
-                                    <span class="code-string">"Vercel"</span>
-                                    <span class="code-bracket">]</span>
-                                    <span class="code-comma">,</span>
-                                </div>
-                                <div class="code-line indent">
-                                    <span class="code-property">openTo</span>
-                                    <span class="code-operator">:</span>
-                                    <span class="code-string">"Internships, full-time roles, collaboration"</span>
-                                </div>
-                                <div class="code-line">
-                                    <span class="code-brace">}</span>
-                                    <span class="code-semicolon">;</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-                <section id="skills" class="section skills-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">02</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="Skills" data-text-es="Habilidades">Skills</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
-                </div>
-
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3 class="category-title" data-text-en="Backend &amp; APIs" data-text-es="Backend y APIs">Backend &amp; APIs</h3>
-                        <div class="skill-items">
-                            <div class="skill-item" data-skill="Java" data-percent="90">
-                                <div class="skill-header">
-                                    <span class="skill-name">Java</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="REST APIs" data-percent="90">
-                                <div class="skill-header">
-                                    <span class="skill-name">REST APIs</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="Python" data-percent="88">
-                                <div class="skill-header">
-                                    <span class="skill-name">Python</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="Kotlin" data-percent="76">
-                                <div class="skill-header">
-                                    <span class="skill-name">Kotlin</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="Jakarta EE" data-percent="72">
-                                <div class="skill-header">
-                                    <span class="skill-name">Jakarta EE</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3 class="category-title" data-text-en="Frontend" data-text-es="Frontend">Frontend</h3>
-                        <div class="skill-items">
-                            <div class="skill-item" data-skill="JavaScript" data-percent="84">
-                                <div class="skill-header">
-                                    <span class="skill-name">JavaScript</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="TypeScript" data-percent="82">
-                                <div class="skill-header">
-                                    <span class="skill-name">TypeScript</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="React" data-percent="80">
-                                <div class="skill-header">
-                                    <span class="skill-name">React</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="Vite" data-percent="78">
-                                <div class="skill-header">
-                                    <span class="skill-name">Vite</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="Next.js" data-percent="74">
-                                <div class="skill-header">
-                                    <span class="skill-name">Next.js</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3 class="category-title" data-text-en="DevOps &amp; Infrastructure" data-text-es="DevOps e Infraestructura">DevOps &amp; Infrastructure</h3>
-                        <div class="skill-items">
-                            <div class="skill-item" data-skill="Docker" data-percent="86">
-                                <div class="skill-header">
-                                    <span class="skill-name">Docker</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="Linux" data-percent="85">
-                                <div class="skill-header">
-                                    <span class="skill-name">Linux</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="CI/CD" data-percent="84">
-                                <div class="skill-header">
-                                    <span class="skill-name">CI/CD</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="GitHub Actions" data-percent="82">
-                                <div class="skill-header">
-                                    <span class="skill-name">GitHub Actions</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="Kubernetes" data-percent="68">
-                                <div class="skill-header">
-                                    <span class="skill-name">Kubernetes</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3 class="category-title" data-text-en="Cloud, Data &amp; Integrations" data-text-es="Cloud, Datos e Integraciones">Cloud, Data &amp; Integrations</h3>
-                        <div class="skill-items">
-                            <div class="skill-item" data-skill="Google APIs" data-percent="80">
-                                <div class="skill-header">
-                                    <span class="skill-name">Google APIs</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="Oracle Database" data-percent="78">
-                                <div class="skill-header">
-                                    <span class="skill-name">Oracle Database</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="Google OAuth2" data-percent="78">
-                                <div class="skill-header">
-                                    <span class="skill-name">Google OAuth2</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="SQL Server" data-percent="74">
-                                <div class="skill-header">
-                                    <span class="skill-name">SQL Server</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-skill="AWS / GCP / Azure" data-percent="72">
-                                <div class="skill-header">
-                                    <span class="skill-name">AWS / GCP / Azure</span>
-                                    <span class="skill-percent">0%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-                <section id="experience" class="section experience-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">03</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="Experience" data-text-es="Experiencia">Experience</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header"><div class="timeline-year">2026</div><div class="timeline-badge">Current</div></div>
-                            <h3 class="timeline-title"><a href="https://sofull.site" target="_blank" rel="noopener noreferrer">Founder &amp; Full-Stack Developer, So Full!</a></h3>
-                            <div class="timeline-company"><i class="fas fa-location-dot"></i> Seoul, South Korea</div>
-                            <p class="timeline-description">Designed, built, and released an open-source Korean food diary app for structured food and drink tracking.</p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Implemented Google Sign-In and client-side persistence with a JSON file stored in Google Drive AppData plus image uploads to a dedicated Drive folder.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Added account security UX with welcome and login-notification emails sent through a lightweight serverless endpoint.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Deployed production infrastructure using GitHub Pages for the frontend and Vercel for the API layer.</span></div>
-                            </div>
-                            <div class="timeline-tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Google APIs</span><span class="tag">Serverless</span><span class="tag">GitHub Pages</span><span class="tag">Vercel</span></div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header"><div class="timeline-year">2025</div></div>
-                            <h3 class="timeline-title"><a href="https://github.com/federicoroldos/obl-devops" target="_blank" rel="noopener noreferrer">DevOps Graduation Project, ORT University</a></h3>
-                            <div class="timeline-company"><i class="fas fa-location-dot"></i> Montevideo, Uruguay</div>
-                            <p class="timeline-description">Final graduation project for the DevOps Certification at ORT University, focused on applying DevOps principles in a complete real-world scenario.</p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Designed and implemented an automated workflow covering application build, deployment, and infrastructure management.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Used containerization, CI/CD pipelines, and cloud concepts to support repeatable deployments.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Applied infrastructure, automation, and monitoring concepts while maintaining full project documentation in a public repository.</span></div>
-                            </div>
-                            <div class="timeline-tags"><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Linux</span><span class="tag">Cloud Fundamentals</span></div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header"><div class="timeline-year">2024</div></div>
-                            <h3 class="timeline-title"><a href="https://www.linkedin.com/posts/santiago-aboal-71425626a_hola-red-vengo-a-mostrar-un-poco-de-activity-7290005317906530304-TETB?utm_source=share&utm_medium=member_desktop&rcm=ACoAADSmO3wBMQOyeo3Atpm3mcnWrUzyn-SEP7A" target="_blank" rel="noopener noreferrer">Project Manager for Final Degree Project, Tecnological University UTEC</a></h3>
-                            <div class="timeline-company"><i class="fas fa-location-dot"></i> Fray Bentos, Uruguay</div>
-                            <p class="timeline-description">Participated in the planning, coordination, and execution of a full-stack application developed from scratch to manage hospital equipment and assets.</p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Improved traceability and control by centralizing information previously managed through manual or fragmented processes.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Enhanced availability and reliability of equipment data with a structured backend, relational database, and role-based access.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Worked in a Scrum environment and coordinated contributions across web, mobile, backend, and infrastructure components.</span></div>
-                            </div>
-                            <div class="timeline-tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Kotlin</span><span class="tag">Java</span><span class="tag">Jakarta EE</span><span class="tag">Oracle Database</span><span class="tag">Docker</span></div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header"><div class="timeline-year">2022 - 2023</div></div>
-                            <h3 class="timeline-title">Trainee, Emprende Tech SAS</h3>
-                            <div class="timeline-company"><i class="fas fa-location-dot"></i> Mercedes, Uruguay</div>
-                            <p class="timeline-description">Completed a 6-month internship at a company focused on digital transformation.</p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Participated in a digital transformation project for the company El Abrojo.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Used Microsoft Power Platform tools including Power Automate, Power Virtual Agents, SharePoint, Microsoft Forms, and Microsoft Dataverse.</span></div>
-                            </div>
-                            <div class="timeline-tags"><span class="tag">Power Automate</span><span class="tag">Power Virtual Agents</span><span class="tag">SharePoint</span><span class="tag">Microsoft Forms</span><span class="tag">Dataverse</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-                <section id="projects" class="section projects-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">04</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="Projects" data-text-es="Proyectos">Projects</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
-                </div>
-
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-overlay"><div class="project-links"><a href="https://sofull.site" target="_blank" rel="noopener noreferrer" class="project-link" title="View Project"><i class="fas fa-external-link-alt"></i></a><a href="https://github.com/federicoroldos/sofull-site" target="_blank" rel="noopener noreferrer" class="project-link" title="View Code"><i class="fab fa-github"></i></a></div></div>
-                            <div class="project-placeholder"><i class="fas fa-utensils"></i></div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">So Full! - Personal Food &amp; Drink Log</h3>
-                            <p class="project-meta">Released February 2026</p>
-                            <p class="project-description">Web application for tracking food and drink entries with structured ratings and searchable history.</p>
-                            <div class="project-tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Google OAuth2</span><span class="tag">Google Drive API</span><span class="tag">Vercel</span><span class="tag">GitHub Pages</span><span class="tag">Serverless</span></div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-overlay"><div class="project-links"><a href="https://roldos.site" target="_blank" rel="noopener noreferrer" class="project-link" title="View Project"><i class="fas fa-external-link-alt"></i></a><a href="https://github.com/federicoroldos/roldoswebsite" target="_blank" rel="noopener noreferrer" class="project-link" title="View Code"><i class="fab fa-github"></i></a></div></div>
-                            <div class="project-placeholder"><i class="fas fa-globe"></i></div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Personal Website Hosting and Deployment</h3>
-                            <p class="project-meta">Released November 2025</p>
-                            <p class="project-description">Continuous deployment and maintenance of personal web properties with versioned releases in Git.</p>
-                            <div class="project-tags"><span class="tag">Git</span><span class="tag">GitHub Actions</span><span class="tag">GitHub Pages</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image"><div class="project-placeholder"><i class="fas fa-cubes"></i></div></div>
-                        <div class="project-content">
-                            <h3 class="project-title">Minecraft Server Hosting, Plugins, and Modding</h3>
-                            <p class="project-meta">Ongoing</p>
-                            <p class="project-description">Multi-year server administration project focused on stability, customization, and community operations.</p>
-                            <div class="project-tags"><span class="tag">Windows Server</span><span class="tag">Linux</span><span class="tag">Spigot</span><span class="tag">Bukkit</span><span class="tag">Forge</span><span class="tag">Fabric</span><span class="tag">Paper</span></div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image"><div class="project-placeholder"><i class="fas fa-server"></i></div></div>
-                        <div class="project-content">
-                            <h3 class="project-title">Game Server Infrastructure, OS, and Hardware Administration</h3>
-                            <p class="project-meta">Ongoing</p>
-                            <p class="project-description">Hands-on setup and maintenance of physical machines and virtual servers for multiplayer game workloads.</p>
-                            <div class="project-tags"><span class="tag">Hardware Tuning</span><span class="tag">Virtualization</span><span class="tag">Networking</span><span class="tag">Windows Server</span><span class="tag">Linux</span><span class="tag">Docker</span></div> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="education" class="section education-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">05</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="Education" data-text-es="Educación">Education</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header">
-                                <div class="timeline-year">2025</div>
-                            </div>
-                            <h3 class="timeline-title">ORT University</h3>
-                            <div class="timeline-company"><i class="fas fa-location-dot"></i> Montevideo, Uruguay</div>
-                            <p class="timeline-description">DevOps Certification.</p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>DevOps Methodology, Linux Fundamentals and CLI, Git and version control, Automation.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>CI/CD pipelines, DevOps KPIs and DevSecOps, Cloud concepts (IaaS, PaaS, SaaS).</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Container Technologies (Docker, Kubernetes), Infrastructure as Code, Observability and Metrics.</span></div>
-                            </div>
-                            <div class="timeline-tags"><span class="tag">DevOps</span><span class="tag">Linux</span><span class="tag">CI/CD</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">IaC</span><span class="tag">Observability</span></div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header">
-                                <div class="timeline-year">2023</div>
-                            </div>
-                            <h3 class="timeline-title">Karelia University of Applied Sciences</h3>
-                            <div class="timeline-company"><i class="fas fa-location-dot"></i> Joensuu, Finland</div>
-                            <p class="timeline-description">Student Exchange Program.</p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>ICT Business, Programming (Python), IT Infrastructure Architecture.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Digital Technology Essentials, Working in International Teams, Intercultural Communication Competence, Finnish.</span></div>
-                            </div>
-                            <div class="timeline-tags"><span class="tag">ICT Business</span><span class="tag">Python</span><span class="tag">IT Infrastructure</span><span class="tag">Digital Technology</span><span class="tag">International Teams</span><span class="tag">Finnish</span></div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-header">
-                                <div class="timeline-year">2021 - Present</div>
-                            </div>
-                            <h3 class="timeline-title">Technological University UTEC</h3>
-                            <div class="timeline-company"><i class="fas fa-location-dot"></i> Fray Bentos, Uruguay</div>
-                            <p class="timeline-description">Bachelor's Degree in Information Technology.</p>
-                            <div class="timeline-achievements">
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Software Engineering, Databases, Operative Systems, Computer Networks.</span></div>
-                                <div class="achievement-item"><i class="fas fa-check-circle"></i><span>Web Development, Systems Analysis, Cloud Computing Fundamentals.</span></div>
-                            </div>
-                            <div class="timeline-tags"><span class="tag">Software Engineering</span><span class="tag">Databases</span><span class="tag">Operative Systems</span><span class="tag">Computer Networks</span><span class="tag">Web Development</span><span class="tag">Systems Analysis</span><span class="tag">Cloud Fundamentals</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-                <section id="contact" class="section contact-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">06</span>
-                    <h2 class="section-title">
-                        <span class="title-bracket">&lt;</span>
-                        <span class="title-text" data-text-en="Contact" data-text-es="Contacto">Contact</span>
-                        <span class="title-bracket">/&gt;</span>
-                    </h2>
-                    <div class="section-line"></div>
-                </div>
-
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-details"><h4 class="contact-label" data-text-en="Email" data-text-es="Correo">Email</h4><a href="mailto:federicoroldos1@gmail.com" class="contact-value">federicoroldos1@gmail.com</a></div></div>
-                        <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-details"><h4 class="contact-label" data-text-en="Location" data-text-es="Ubicación">Location</h4><span class="contact-value" data-text-en="Montevideo, Uruguay" data-text-es="Montevideo, Uruguay">Montevideo, Uruguay</span></div></div>
-                    </div>
-
-                    <form class="contact-form" id="contactForm" data-endpoint="https://formsubmit.co/ajax/federicoroldos1@gmail.com">
-                        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="name" placeholder="Name" data-placeholder-en="Name" data-placeholder-es="Nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-input" name="email" placeholder="Email" data-placeholder-en="Email" data-placeholder-es="Correo" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="subject" placeholder="Subject" data-placeholder-en="Subject" data-placeholder-es="Asunto" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-input form-textarea" name="message" rows="5" placeholder="Message" data-placeholder-en="Message" data-placeholder-es="Mensaje" required></textarea>
-                        </div>
-                        <div class="contact-actions">
-                            <button type="submit" class="btn btn-primary btn-submit">
-                                <span data-text-en="Send Message" data-text-es="Enviar Mensaje">Send Message</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                            <a class="btn btn-secondary" href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-secondary" href="https://github.com/federicoroldos" target="_blank" rel="noopener noreferrer"><span>GitHub</span><i class="fab fa-github"></i></a>
-                        </div>
-                        <p id="formStatus" class="form-status" role="status" aria-live="polite" hidden></p>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-text-wrapper">
-                    <p class="footer-text">
-                        <span class="footer-copyright">&copy; <span id="year"></span> Federico Rold&oacute;s</span>
-                    </p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/federicoroldos" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="mailto:federicoroldos1@gmail.com" class="footer-social-link" title="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <div class="eyebrow">
+            <span class="status-dot"></span>
+            <span data-i18n-en="Available for opportunities" data-i18n-es="Disponible para oportunidades">Available for opportunities</span>
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-hi" data-i18n-en="Hi, I'm" data-i18n-es="Hola, soy">Hi, I'm</span>
+            <span class="hero-name">Federico Roldós<span class="accent">.</span></span>
+          </h1>
+          <p class="hero-role">
+            <span class="mono">&gt;</span>
+            <span data-i18n-en="Software Engineer · Backend & DevOps" data-i18n-es="Ingeniero de Software · Backend y DevOps">Software Engineer · Backend &amp; DevOps</span>
+          </p>
+          <p class="hero-desc" data-i18n-en="IT student based in Montevideo, Uruguay. I build reliable backend systems, full-stack apps, and the infrastructure that runs them, from Flask and Java services to CI/CD pipelines, containers, and self-hosted servers." data-i18n-es="Estudiante de TI en Montevideo, Uruguay. Construyo sistemas backend confiables, aplicaciones full-stack y la infraestructura que los hace funcionar, desde servicios en Flask y Java hasta pipelines CI/CD, contenedores y servidores autoalojados.">
+            IT student based in Montevideo, Uruguay. I build reliable backend systems, full-stack apps, and the infrastructure that runs them, from Flask and Java services to CI/CD pipelines, containers, and self-hosted servers.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#projects">
+              <span data-i18n-en="View my work" data-i18n-es="Ver mi trabajo">View my work</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a class="btn btn-ghost" href="#contact">
+              <span data-i18n-en="Get in touch" data-i18n-es="Contáctame">Get in touch</span>
+            </a>
+          </div>
+          <div class="hero-socials">
+            <a href="https://github.com/federicoroldos" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:federicoroldos1@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
         </div>
-    </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="script.js"></script>
+        <aside class="hero-card" aria-hidden="true">
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="terminal-title">~/federico - zsh</span>
+            </div>
+            <div class="terminal-body">
+              <p><span class="prompt">$</span> whoami</p>
+              <p class="t-out">federico-roldos</p>
+              <p><span class="prompt">$</span> cat profile.json</p>
+<pre class="t-code"><span class="t-brace">{</span>
+  <span class="t-key">"role"</span>:     <span class="t-str">"Software Engineer"</span>,
+  <span class="t-key">"location"</span>: <span class="t-str">"Montevideo, UY"</span>,
+  <span class="t-key">"focus"</span>:    [<span class="t-str">"Backend"</span>, <span class="t-str">"DevOps"</span>, <span class="t-str">"Full-Stack"</span>],
+  <span class="t-key">"stack"</span>:    [<span class="t-str">"Java"</span>, <span class="t-str">"Python"</span>, <span class="t-str">"TS"</span>, <span class="t-str">"React"</span>, <span class="t-str">"Docker"</span>],
+  <span class="t-key">"languages"</span>:[<span class="t-str">"ES"</span>, <span class="t-str">"EN (C1)"</span>, <span class="t-str">"FI (A1)"</span>],
+  <span class="t-key">"open_to"</span>:  <span class="t-str">"internships, full-time roles"</span>
+<span class="t-brace">}</span></pre>
+              <p><span class="prompt">$</span> <span class="cursor"></span></p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-num">01</span>
+          <h2 class="section-title" data-i18n-en="About me" data-i18n-es="Sobre mí">About me</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p data-i18n-en="I'm Federico, an IT student at UTEC Uruguay with a DevOps certification from ORT University and an international exchange at Karelia UAS in Finland. My focus is on backend engineering, infrastructure, and automation, but I'm comfortable shipping end-to-end products: I design the API, build the UI, set up the pipeline, and deploy the thing." data-i18n-es="Soy Federico, estudiante de TI en UTEC Uruguay con una certificación DevOps de la Universidad ORT y un intercambio internacional en Karelia UAS en Finlandia. Me enfoco en ingeniería backend, infraestructura y automatización, pero también entrego productos completos: diseño la API, construyo la UI, armo el pipeline y lo despliego.">
+              I'm Federico, an IT student at UTEC Uruguay with a DevOps certification from ORT University and an international exchange at Karelia UAS in Finland. My focus is on backend engineering, infrastructure, and automation, but I'm comfortable shipping end-to-end products: I design the API, build the UI, set up the pipeline, and deploy the thing.
+            </p>
+            <p data-i18n-en="Outside of coursework I run my own published projects (a Korean food diary used in production, a desktop finance tracker), administer my own game servers, and write the plugins they run on. I care about clarity, reliability, and getting things to actually ship." data-i18n-es="Fuera de los cursos mantengo mis propios proyectos publicados (un diario de comida coreana en producción, un gestor de finanzas de escritorio), administro mis propios servidores de juegos y escribo los plugins que corren en ellos. Me importan la claridad, la confiabilidad y que las cosas realmente salgan a producción.">
+              Outside of coursework I run my own published projects (a Korean food diary used in production, a desktop finance tracker), administer my own game servers, and write the plugins they run on. I care about clarity, reliability, and getting things to actually ship.
+            </p>
+          </div>
+          <div class="about-side">
+            <div class="info-card">
+              <div class="info-row"><span class="info-k" data-i18n-en="Location" data-i18n-es="Ubicación">Location</span><span class="info-v">Montevideo, Uruguay</span></div>
+              <div class="info-row"><span class="info-k" data-i18n-en="Degree" data-i18n-es="Carrera">Degree</span><span class="info-v" data-i18n-en="B.Sc. IT - UTEC" data-i18n-es="Lic. en TI - UTEC">B.Sc. IT - UTEC</span></div>
+              <div class="info-row"><span class="info-k" data-i18n-en="Certification" data-i18n-es="Certificación">Certification</span><span class="info-v">DevOps - ORT</span></div>
+              <div class="info-row"><span class="info-k" data-i18n-en="Languages" data-i18n-es="Idiomas">Languages</span><span class="info-v">ES · EN (C1) · FI (A1)</span></div>
+              <div class="info-row"><span class="info-k" data-i18n-en="Email" data-i18n-es="Correo">Email</span><a class="info-v link" href="mailto:federicoroldos1@gmail.com">federicoroldos1@gmail.com</a></div>
+            </div>
+            <div class="stats">
+              <div class="stat"><div class="stat-num">4+</div><div class="stat-lbl" data-i18n-en="Years coding" data-i18n-es="Años programando">Years coding</div></div>
+              <div class="stat"><div class="stat-num">6</div><div class="stat-lbl" data-i18n-en="Shipped projects" data-i18n-es="Proyectos lanzados">Shipped projects</div></div>
+              <div class="stat"><div class="stat-num">3</div><div class="stat-lbl" data-i18n-en="Institutions" data-i18n-es="Instituciones">Institutions</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-num">02</span>
+          <h2 class="section-title" data-i18n-en="Experience" data-i18n-es="Experiencia">Experience</h2>
+        </div>
+        <div class="timeline">
+
+          <article class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-head">
+                <div>
+                  <h3 class="tl-title"><a href="https://github.com/federicoroldos/obl-devops" target="_blank" rel="noopener">DevOps Graduation Project - ORT University</a></h3>
+                  <p class="tl-meta"><i class="fas fa-location-dot"></i> Montevideo, Uruguay</p>
+                </div>
+                <span class="tl-year">2025</span>
+              </div>
+              <ul class="tl-list">
+                <li data-i18n-en="Containerized a sample application with Docker and wrote the Dockerfiles and compose configuration used for local and cloud runs." data-i18n-es="Contenericé una aplicación de ejemplo con Docker y escribí los Dockerfiles y la configuración de compose usados para correrla local y en la nube.">Containerized a sample application with Docker and wrote the Dockerfiles and compose configuration used for local and cloud runs.</li>
+                <li data-i18n-en="Built a GitHub Actions pipeline that runs on every push to lint, build, push the image, and deploy it to the target environment." data-i18n-es="Construí un pipeline en GitHub Actions que se ejecuta en cada push para lintar, compilar, subir la imagen y desplegarla en el entorno objetivo.">Built a GitHub Actions pipeline that runs on every push to lint, build, push the image, and deploy it to the target environment.</li>
+                <li data-i18n-en="Provisioned and configured the Linux server hosting the deployment, including users, firewall rules, and the Docker runtime." data-i18n-es="Aprovisioné y configuré el servidor Linux que aloja el despliegue, incluyendo usuarios, reglas de firewall y el runtime de Docker.">Provisioned and configured the Linux server hosting the deployment, including users, firewall rules, and the Docker runtime.</li>
+                <li data-i18n-en="Wrote the full project documentation (architecture, pipeline, rollback steps) and presented the work as my final graduation deliverable." data-i18n-es="Redacté la documentación completa del proyecto (arquitectura, pipeline, pasos de rollback) y presenté el trabajo como mi entregable final de graduación.">Wrote the full project documentation (architecture, pipeline, rollback steps) and presented the work as my final graduation deliverable.</li>
+              </ul>
+              <div class="chips">
+                <span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Git</span><span class="chip">Linux</span><span class="chip">Cloud</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-head">
+                <div>
+                  <h3 class="tl-title">Project Manager - UTEC Final Degree Project</h3>
+                  <p class="tl-meta"><i class="fas fa-location-dot"></i> Fray Bentos, Uruguay</p>
+                </div>
+                <span class="tl-year">2024</span>
+              </div>
+              <ul class="tl-list">
+                <li data-i18n-en="Led a cross-functional team of 5, ran the Scrum ceremonies (sprint planning, dailies, reviews, retros), and kept the backlog and sprint board up to date." data-i18n-es="Lideré un equipo multifuncional de 5 personas, conduje las ceremonias de Scrum (planning, dailies, reviews, retros) y mantuve actualizados el backlog y el tablero del sprint.">Led a cross-functional team of 5, ran the Scrum ceremonies (sprint planning, dailies, reviews, retros), and kept the backlog and sprint board up to date.</li>
+                <li data-i18n-en="Broke the hospital equipment management system down into user stories, estimated them with the team, and prioritized scope alongside the client." data-i18n-es="Desglosé el sistema de gestión de equipamiento hospitalario en historias de usuario, las estimamos con el equipo y prioricé el alcance junto al cliente.">Broke the hospital equipment management system down into user stories, estimated them with the team, and prioritized scope alongside the client.</li>
+                <li data-i18n-en="Coordinated the integration points between the web (Next.js), mobile (Kotlin), and backend (Java/Jakarta EE + Oracle DB) tracks so the components actually talked to each other." data-i18n-es="Coordiné los puntos de integración entre los tracks web (Next.js), mobile (Kotlin) y backend (Java/Jakarta EE + Oracle DB) para que los componentes realmente se comunicaran entre sí.">Coordinated the integration points between the web (Next.js), mobile (Kotlin), and backend (Java/Jakarta EE + Oracle DB) tracks so the components actually talked to each other.</li>
+                <li data-i18n-en="Set up and maintained the tooling the team relied on: TestLink for test cases, Mantis for bug tracking, Postman collections, and the SonarQube quality gate." data-i18n-es="Configuré y mantuve las herramientas en las que se apoyaba el equipo: TestLink para casos de prueba, Mantis para bugs, colecciones de Postman y el quality gate de SonarQube.">Set up and maintained the tooling the team relied on: TestLink for test cases, Mantis for bug tracking, Postman collections, and the SonarQube quality gate.</li>
+              </ul>
+              <div class="chips">
+                <span class="chip">Next.js</span><span class="chip">React</span><span class="chip">Kotlin</span><span class="chip">Java</span>
+                <span class="chip">Jakarta EE</span><span class="chip">Oracle DB</span><span class="chip">Docker</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-head">
+                <div>
+                  <h3 class="tl-title">Trainee - Emprende Tech SAS</h3>
+                  <p class="tl-meta"><i class="fas fa-location-dot"></i> Mercedes, Uruguay</p>
+                </div>
+                <span class="tl-year">2022 - 2023</span>
+              </div>
+              <ul class="tl-list">
+                <li data-i18n-en="Mapped the client's manual processes with the team and turned them into a digital workflow on the Microsoft Power Platform." data-i18n-es="Relevé los procesos manuales del cliente junto al equipo y los transformé en un flujo digital sobre Microsoft Power Platform.">Mapped the client's manual processes with the team and turned them into a digital workflow on the Microsoft Power Platform.</li>
+                <li data-i18n-en="Built data-collection forms in Microsoft Forms and Power Virtual Agents chatbots that fed answers into Dataverse tables." data-i18n-es="Construí formularios de recolección de datos en Microsoft Forms y chatbots en Power Virtual Agents que volcaban las respuestas en tablas de Dataverse.">Built data-collection forms in Microsoft Forms and Power Virtual Agents chatbots that fed answers into Dataverse tables.</li>
+                <li data-i18n-en="Wired everything together with Power Automate flows handling routing, notifications, and document storage in SharePoint." data-i18n-es="Conecté todo mediante flujos de Power Automate que se ocupaban del routing, las notificaciones y el almacenamiento de documentos en SharePoint.">Wired everything together with Power Automate flows handling routing, notifications, and document storage in SharePoint.</li>
+                <li data-i18n-en="Tested each automation with real client data and adjusted the flows based on the feedback that came back from El Abrojo." data-i18n-es="Probé cada automatización con datos reales del cliente y ajusté los flujos según el feedback que llegaba desde El Abrojo.">Tested each automation with real client data and adjusted the flows based on the feedback that came back from El Abrojo.</li>
+              </ul>
+              <div class="chips">
+                <span class="chip">Power Automate</span><span class="chip">SharePoint</span><span class="chip">Dataverse</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-num">03</span>
+          <h2 class="section-title" data-i18n-en="Selected projects" data-i18n-es="Proyectos destacados">Selected projects</h2>
+        </div>
+
+        <div class="projects">
+
+          <article class="project featured">
+            <div class="project-visual">
+              <div class="project-icon"><i class="fas fa-utensils"></i></div>
+              <span class="project-badge" data-i18n-en="Featured" data-i18n-es="Destacado">Featured</span>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">So Full!</h3>
+                <span class="project-year">2026</span>
+              </div>
+              <p class="project-sub" data-i18n-en="Korean food &amp; drink diary - Open source" data-i18n-es="Diario de comida y bebida coreana - Open source">Korean food &amp; drink diary - Open source</p>
+              <p class="project-desc" data-i18n-en="Web app to log and rate Korean foods with category-specific attributes. Google Sign-In and fully client-side persistence: data stored as JSON in Google Drive AppData, images in a dedicated Drive folder. Email notifications through a Vercel serverless endpoint." data-i18n-es="Aplicación web para registrar y calificar comidas coreanas con atributos por categoría. Google Sign-In y persistencia totalmente del lado del cliente: datos como JSON en Google Drive AppData, imágenes en una carpeta dedicada. Notificaciones por correo mediante un endpoint serverless en Vercel.">
+                Web app to log and rate Korean foods with category-specific attributes. Google Sign-In and fully client-side persistence: data stored as JSON in Google Drive AppData, images in a dedicated Drive folder. Email notifications through a Vercel serverless endpoint.
+              </p>
+              <div class="chips">
+                <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Vite</span>
+                <span class="chip">Google APIs</span><span class="chip">Vercel</span>
+              </div>
+              <div class="project-links">
+                <a href="https://sofull.site" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> sofull.site</a>
+                <a href="https://github.com/federicoroldos/sofull-site" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project featured">
+            <div class="project-visual">
+              <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+              <span class="project-badge" data-i18n-en="Featured" data-i18n-es="Destacado">Featured</span>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">ClariFi</h3>
+                <span class="project-year">2026</span>
+              </div>
+              <p class="project-sub" data-i18n-en="Desktop personal finances tracker" data-i18n-es="Gestor de finanzas personales para escritorio">Desktop personal finances tracker</p>
+              <p class="project-desc" data-i18n-en="Open-source desktop app with multi-account and multi-currency support. Flask backend over an Excel data layer (openpyxl) with a thread-safe load/mutate/save pattern, plus a handwritten vanilla-JS frontend with custom canvas charts. Shipped as a native Windows build via pywebview + PyInstaller + Inno Setup, with a built-in GitHub Releases update checker." data-i18n-es="Aplicación de escritorio open-source con soporte multi-cuenta y multi-moneda. Backend Flask sobre una capa de datos Excel (openpyxl) con patrón thread-safe de carga/mutación/guardado, más un frontend en vanilla JS con gráficos en canvas hechos a mano. Distribuido como build nativo de Windows con pywebview + PyInstaller + Inno Setup, con verificación de actualizaciones vía GitHub Releases.">
+                Open-source desktop app with multi-account and multi-currency support. Flask backend over an Excel data layer (openpyxl) with a thread-safe load/mutate/save pattern, plus a handwritten vanilla-JS frontend with custom canvas charts. Shipped as a native Windows build via pywebview + PyInstaller + Inno Setup, with a built-in GitHub Releases update checker.
+              </p>
+              <div class="chips">
+                <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">JavaScript</span>
+                <span class="chip">PyInstaller</span><span class="chip">Inno Setup</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/federicoroldos/basic-personal-finances-tracker" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-visual"><div class="project-icon"><i class="fas fa-gamepad"></i></div></div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title" data-i18n-en="Game Servers &amp; Plugins" data-i18n-es="Servidores de juegos y plugins">Game Servers &amp; Plugins</h3>
+                <span class="project-year" data-i18n-en="Ongoing" data-i18n-es="En curso">Ongoing</span>
+              </div>
+              <p class="project-desc" data-i18n-en="Private servers I run for a closed group of players across Minecraft, Hytale, Ark, and Assetto Corsa, with custom Java plugins and mods written for them. Gameplay features, permissions integration, and player-data management across the Spigot/Bukkit and Forge/Fabric ecosystems." data-i18n-es="Servidores privados que mantengo para un grupo cerrado de jugadores en Minecraft, Hytale, Ark y Assetto Corsa, con plugins y mods en Java escritos a medida. Funcionalidades de gameplay, integración de permisos y gestión de datos de jugadores en los ecosistemas Spigot/Bukkit y Forge/Fabric.">
+                Private servers I run for a closed group of players across Minecraft, Hytale, Ark, and Assetto Corsa, with custom Java plugins and mods written for them. Gameplay features, permissions integration, and player-data management across the Spigot/Bukkit and Forge/Fabric ecosystems.
+              </p>
+              <div class="chips">
+                <span class="chip">Java</span><span class="chip">Spigot</span><span class="chip">Bukkit</span><span class="chip">Forge</span><span class="chip">Fabric</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-visual"><div class="project-icon"><i class="fas fa-server"></i></div></div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title" data-i18n-en="Self-Hosted Server Infrastructure" data-i18n-es="Infraestructura de servidores autoalojados">Self-Hosted Server Infrastructure</h3>
+                <span class="project-year" data-i18n-en="Ongoing" data-i18n-es="En curso">Ongoing</span>
+              </div>
+              <p class="project-desc" data-i18n-en="Built and configured physical and virtual machines for home and server use. OS provisioning on Linux and Windows Server, networking and firewall setup, virtualization, container runtimes, automated backups, and monitoring." data-i18n-es="Construí y configuré máquinas físicas y virtuales para uso doméstico y de servidor. Aprovisionamiento de SO en Linux y Windows Server, configuración de redes y firewall, virtualización, runtimes de contenedores, backups automatizados y monitoreo.">
+                Built and configured physical and virtual machines for home and server use. OS provisioning on Linux and Windows Server, networking and firewall setup, virtualization, container runtimes, automated backups, and monitoring.
+              </p>
+              <div class="chips">
+                <span class="chip">Linux</span><span class="chip">Windows Server</span><span class="chip">Docker</span><span class="chip">Networking</span><span class="chip">Virtualization</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-visual"><div class="project-icon"><i class="fas fa-globe"></i></div></div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">roldos.site</h3>
+                <span class="project-year" data-i18n-en="Ongoing" data-i18n-es="En curso">Ongoing</span>
+              </div>
+              <p class="project-desc" data-i18n-en="Personal website covering hosting, deployment, branching strategy, and continuous improvements. The site you're looking at right now." data-i18n-es="Sitio personal que cubre hospedaje, despliegue, estrategia de ramas y mejoras continuas. El sitio que estás viendo ahora mismo.">
+                Personal website covering hosting, deployment, branching strategy, and continuous improvements. The site you're looking at right now.
+              </p>
+              <div class="chips">
+                <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">GitHub Pages</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/federicoroldos/roldoswebsite" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-num">04</span>
+          <h2 class="section-title" data-i18n-en="Education" data-i18n-es="Educación">Education</h2>
+        </div>
+        <div class="edu-grid">
+
+          <article class="edu-card">
+            <div class="edu-top">
+              <i class="fas fa-graduation-cap edu-ico"></i>
+              <span class="edu-year">2025</span>
+            </div>
+            <h3 class="edu-school">ORT University</h3>
+            <p class="edu-degree" data-i18n-en="DevOps Certification" data-i18n-es="Certificación en DevOps">DevOps Certification</p>
+            <p class="edu-place"><i class="fas fa-location-dot"></i> Montevideo, Uruguay</p>
+            <p class="edu-desc" data-i18n-en="DevOps methodology, Linux fundamentals, Git, CI/CD pipelines, DevSecOps, cloud concepts (IaaS/PaaS/SaaS), Docker, Kubernetes, IaC, observability and metrics." data-i18n-es="Metodología DevOps, fundamentos de Linux, Git, pipelines CI/CD, DevSecOps, conceptos cloud (IaaS/PaaS/SaaS), Docker, Kubernetes, IaC, observabilidad y métricas.">
+              DevOps methodology, Linux fundamentals, Git, CI/CD pipelines, DevSecOps, cloud concepts (IaaS/PaaS/SaaS), Docker, Kubernetes, IaC, observability and metrics.
+            </p>
+          </article>
+
+          <article class="edu-card">
+            <div class="edu-top">
+              <i class="fas fa-plane-departure edu-ico"></i>
+              <span class="edu-year">2023</span>
+            </div>
+            <h3 class="edu-school">Karelia University of Applied Sciences</h3>
+            <p class="edu-degree" data-i18n-en="Student Exchange Program" data-i18n-es="Programa de intercambio">Student Exchange Program</p>
+            <p class="edu-place"><i class="fas fa-location-dot"></i> Joensuu, Finland</p>
+            <p class="edu-desc" data-i18n-en="ICT business, programming (Python), IT infrastructure architecture, digital technology essentials, intercultural communication, working in international teams, Finnish." data-i18n-es="Negocio en TIC, programación (Python), arquitectura de infraestructura TI, fundamentos de tecnología digital, comunicación intercultural, trabajo en equipos internacionales, finés.">
+              ICT business, programming (Python), IT infrastructure architecture, digital technology essentials, intercultural communication, working in international teams, Finnish.
+            </p>
+          </article>
+
+          <article class="edu-card">
+            <div class="edu-top">
+              <i class="fas fa-university edu-ico"></i>
+              <span class="edu-year">2021 - <span data-i18n-en="Present" data-i18n-es="Presente">Present</span></span>
+            </div>
+            <h3 class="edu-school">Technological University UTEC</h3>
+            <p class="edu-degree" data-i18n-en="Bachelor's Degree in Information Technology" data-i18n-es="Licenciatura en Tecnologías de la Información">Bachelor's Degree in Information Technology</p>
+            <p class="edu-place"><i class="fas fa-location-dot"></i> Fray Bentos, Uruguay</p>
+            <p class="edu-desc" data-i18n-en="Software engineering, databases, operating systems, computer networks, web development, systems analysis, and cloud computing fundamentals." data-i18n-es="Ingeniería de software, bases de datos, sistemas operativos, redes, desarrollo web, análisis de sistemas y fundamentos de cloud computing.">
+              Software engineering, databases, operating systems, computer networks, web development, systems analysis, and cloud computing fundamentals.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-num">05</span>
+          <h2 class="section-title" data-i18n-en="What I work with" data-i18n-es="Con qué trabajo">What I work with</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-block">
+            <div class="skill-head"><i class="fas fa-code"></i><h3 data-i18n-en="Languages" data-i18n-es="Lenguajes">Languages</h3></div>
+            <div class="chips chips-lg">
+              <span class="chip">Java</span><span class="chip">Python</span><span class="chip">JavaScript</span>
+              <span class="chip">TypeScript</span><span class="chip">Kotlin</span><span class="chip">SQL</span>
+            </div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-head"><i class="fas fa-window-restore"></i><h3 data-i18n-en="Frontend &amp; Frameworks" data-i18n-es="Frontend y Frameworks">Frontend &amp; Frameworks</h3></div>
+            <div class="chips chips-lg">
+              <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Vite</span>
+              <span class="chip">Material UI</span><span class="chip">Flask</span><span class="chip">Jakarta EE</span>
+            </div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-head"><i class="fas fa-gears"></i><h3 data-i18n-en="DevOps &amp; Cloud" data-i18n-es="DevOps y Cloud">DevOps &amp; Cloud</h3></div>
+            <div class="chips chips-lg">
+              <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">CI/CD</span>
+              <span class="chip">GitHub Actions</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">Azure</span><span class="chip">Vercel</span>
+            </div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-head"><i class="fas fa-database"></i><h3 data-i18n-en="Data &amp; Systems" data-i18n-es="Datos y Sistemas">Data &amp; Systems</h3></div>
+            <div class="chips chips-lg">
+              <span class="chip">Oracle DB</span><span class="chip">SQL Server</span><span class="chip">Linux</span>
+              <span class="chip">Windows Server</span><span class="chip">Virtualization</span><span class="chip">Networking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-num">06</span>
+          <h2 class="section-title" data-i18n-en="Let's work together" data-i18n-es="Trabajemos juntos">Let's work together</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-side">
+            <p class="contact-lead" data-i18n-en="Open to internships, full-time roles, and freelance collaboration. The fastest way to reach me is by email or LinkedIn." data-i18n-es="Disponible para pasantías, roles full-time y colaboraciones freelance. La forma más rápida de contactarme es por correo o LinkedIn.">
+              Open to internships, full-time roles, and freelance collaboration. The fastest way to reach me is by email or LinkedIn.
+            </p>
+            <ul class="contact-list">
+              <li><i class="fas fa-envelope"></i><a href="mailto:federicoroldos1@gmail.com">federicoroldos1@gmail.com</a></li>
+              <li><i class="fab fa-linkedin-in"></i><a href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener">linkedin.com/in/federicoroldos</a></li>
+              <li><i class="fab fa-github"></i><a href="https://github.com/federicoroldos" target="_blank" rel="noopener">github.com/federicoroldos</a></li>
+              <li><i class="fas fa-location-dot"></i><span data-i18n-en="Montevideo, Uruguay" data-i18n-es="Montevideo, Uruguay">Montevideo, Uruguay</span></li>
+            </ul>
+          </div>
+
+          <form id="contactForm" class="contact-form" data-endpoint="https://formsubmit.co/ajax/federicoroldos1@gmail.com" novalidate>
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+            <div class="field">
+              <label data-i18n-en="Name" data-i18n-es="Nombre">Name</label>
+              <input type="text" name="name" required>
+            </div>
+            <div class="field">
+              <label data-i18n-en="Email" data-i18n-es="Correo">Email</label>
+              <input type="email" name="email" required>
+            </div>
+            <div class="field">
+              <label data-i18n-en="Subject" data-i18n-es="Asunto">Subject</label>
+              <input type="text" name="subject" required>
+            </div>
+            <div class="field">
+              <label data-i18n-en="Message" data-i18n-es="Mensaje">Message</label>
+              <textarea name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              <span data-i18n-en="Send message" data-i18n-es="Enviar mensaje">Send message</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+            <p id="formStatus" class="form-status" role="status" aria-live="polite" hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Federico Roldós</p>
+      <div class="footer-socials">
+        <a href="https://github.com/federicoroldos" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/federicoroldos/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:federicoroldos1@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

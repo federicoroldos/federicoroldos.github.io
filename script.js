@@ -1,889 +1,156 @@
-const AppState = {
-    currentLang: 'en',
-    currentTheme: 'dark',
-    currentSection: 'home',
-    isMenuOpen: false,
-    isLoaded: false
-};
+// roldos.site — interactivity
+
+const STORAGE = { LANG: 'roldos-lang', THEME: 'roldos-theme' };
+const state = { lang: 'en', theme: 'dark' };
 
 document.addEventListener('DOMContentLoaded', () => {
-    initializeApp();
+  loadPrefs();
+  applyTheme();
+  applyLang();
+  bindToggles();
+  bindMobileMenu();
+  bindScrollSpy();
+  bindReveal();
+  bindContactForm();
+  setYear();
 });
 
-function initializeApp() {
-    loadPreferences();
-    setYear();
-    initLanguage();
-    initTheme();
-    initNavigation();
-    initScrollEffects();
-    initFormHandlers();
-    initMobileMenu();
-    updateLanguageUI();
-    updateThemeUI();
-    AppState.isLoaded = true;
+function loadPrefs() {
+  const lang = localStorage.getItem(STORAGE.LANG);
+  const theme = localStorage.getItem(STORAGE.THEME);
+  if (lang === 'en' || lang === 'es') state.lang = lang;
+  if (theme === 'dark' || theme === 'light') state.theme = theme;
 }
 
 function setYear() {
-    const year = document.getElementById('year');
-    if (year) {
-        year.textContent = String(new Date().getFullYear());
-    }
+  const y = document.getElementById('year');
+  if (y) y.textContent = String(new Date().getFullYear());
 }
 
-function loadPreferences() {
-    const savedLang = localStorage.getItem('portfolio-lang');
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedLang === 'en' || savedLang === 'es') {
-        AppState.currentLang = savedLang;
-    } else if (savedLang) {
-        localStorage.removeItem('portfolio-lang');
-    }
-    if (savedTheme) AppState.currentTheme = savedTheme;
-}
-
-function initLanguage() {
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        langToggle.addEventListener('click', toggleLanguage);
-    }
-    setLanguage(AppState.currentLang);
-}
-
-function toggleLanguage() {
-    const newLang = AppState.currentLang === 'en' ? 'es' : 'en';
-    setLanguage(newLang);
-    localStorage.setItem('portfolio-lang', newLang);
-}
-
-function setLanguage(lang) {
-    AppState.currentLang = lang;
-    const html = document.documentElement;
-    const body = document.body;
-
-    html.setAttribute('lang', lang);
-    html.setAttribute('dir', 'ltr');
-    body.setAttribute('data-lang', lang);
-    body.setAttribute('data-dir', 'ltr');
-    updateLanguageUI();
-}
-
-function updateLanguageUI() {
-    const textElements = document.querySelectorAll('[data-text-en], [data-text-es]');
-    textElements.forEach(element => {
-        const enText = element.getAttribute('data-text-en');
-        const esText = element.getAttribute('data-text-es');
-        const targetText = (AppState.currentLang === 'es' && esText) ? esText : enText;
-        if (!targetText) return;
-
-        if (element.hasAttribute('data-preserve-lines')) {
-            element.innerHTML = targetText.replace(/\n/g, '<br>');
-            return;
-        }
-
-        element.textContent = targetText;
-    });
-    
-    const placeholderElements = document.querySelectorAll('[data-placeholder-en], [data-placeholder-es]');
-    placeholderElements.forEach(element => {
-        const enPlaceholder = element.getAttribute('data-placeholder-en');
-        const esPlaceholder = element.getAttribute('data-placeholder-es');
-        if (AppState.currentLang === 'es' && esPlaceholder) {
-            element.setAttribute('placeholder', esPlaceholder);
-        } else if (enPlaceholder) {
-            element.setAttribute('placeholder', enPlaceholder);
-        }
-    });
-    
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        const langText = langToggle.querySelector('.lang-text');
-        if (langText) {
-            langText.textContent = AppState.currentLang === 'en' ? 'ES' : 'EN';
-        }
-    }
-}
-
-function initTheme() {
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
-    setTheme(AppState.currentTheme);
+/* ===== Theme ===== */
+function applyTheme() {
+  document.body.setAttribute('data-theme', state.theme);
+  const icon = document.getElementById('themeIcon');
+  if (icon) icon.className = state.theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
 }
 
 function toggleTheme() {
-    const newTheme = AppState.currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    localStorage.setItem('portfolio-theme', newTheme);
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem(STORAGE.THEME, state.theme);
+  applyTheme();
 }
 
-function setTheme(theme) {
-    AppState.currentTheme = theme;
-    document.body.setAttribute('data-theme', theme);
-    updateThemeUI();
+/* ===== Language ===== */
+function applyLang() {
+  document.body.setAttribute('data-lang', state.lang);
+  document.documentElement.setAttribute('lang', state.lang);
+  document.querySelectorAll('[data-i18n-en]').forEach(el => {
+    const next = el.getAttribute(`data-i18n-${state.lang}`);
+    if (next != null) el.textContent = next;
+  });
+  const label = document.getElementById('langLabel');
+  if (label) label.textContent = state.lang === 'en' ? 'ES' : 'EN';
 }
 
-function updateThemeUI() {
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        const icon = themeToggle.querySelector('i');
-        if (icon) {
-            icon.className = AppState.currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-    }
+function toggleLang() {
+  state.lang = state.lang === 'en' ? 'es' : 'en';
+  localStorage.setItem(STORAGE.LANG, state.lang);
+  applyLang();
 }
 
-function initNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const headerHeight = document.querySelector('.main-header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                updateActiveNavLink(link);
-                if (AppState.isMenuOpen) {
-                    toggleMobileMenu();
-                }
-            }
-        });
+function bindToggles() {
+  const lang = document.getElementById('langToggle');
+  const theme = document.getElementById('themeToggle');
+  if (lang) lang.addEventListener('click', toggleLang);
+  if (theme) theme.addEventListener('click', toggleTheme);
+}
+
+/* ===== Mobile menu ===== */
+function bindMobileMenu() {
+  const btn = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  if (!btn || !links) return;
+  btn.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+}
+
+/* ===== Scroll spy ===== */
+function bindScrollSpy() {
+  const links = Array.from(document.querySelectorAll('.nav-links a'));
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+      }
     });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
 
-    const heroCtaLinks = document.querySelectorAll('.hero-buttons a[href^="#"]');
-    heroCtaLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
+  sections.forEach(s => obs.observe(s));
+}
 
-            if (targetSection) {
-                const headerHeight = document.querySelector('.main-header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
+/* ===== Reveal on scroll ===== */
+function bindReveal() {
+  const targets = document.querySelectorAll(
+    '.section-head, .tl-item, .project, .edu-card, .skill-block, .info-card, .stats, .contact-form, .contact-side'
+  );
+  targets.forEach(el => el.classList.add('reveal'));
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                updateActiveNavLink(null, targetId.replace('#', ''));
-            }
-        });
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
     });
-    
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('scroll', updateHeaderOnScroll);
+  }, { threshold: 0.12 });
+
+  targets.forEach(el => obs.observe(el));
 }
 
-function handleScroll() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPosition = window.scrollY + 100;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            AppState.currentSection = sectionId;
-            updateActiveNavLink(null, sectionId);
-        }
-    });
-}
+/* ===== Contact form (FormSubmit ajax) ===== */
+function bindContactForm() {
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  if (!form) return;
 
-function updateActiveNavLink(clickedLink, sectionId = null) {
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (clickedLink && link === clickedLink) {
-            link.classList.add('active');
-        } else if (sectionId) {
-            const linkSection = link.getAttribute('data-section');
-            if (linkSection === sectionId) {
-                link.classList.add('active');
-            }
-        }
-    });
-}
-
-function updateHeaderOnScroll() {
-    const header = document.querySelector('.main-header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-}
-
-function initScrollEffects() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => observer.observe(section));
-}
-
-function initFormHandlers() {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleFormSubmit);
-    }
-}
-
-function getLocalizedValue(element, fallback = '') {
-    if (!element) return fallback;
-    const enValue = element.getAttribute('data-text-en');
-    const esValue = element.getAttribute('data-text-es');
-    if (AppState.currentLang === 'es' && esValue) return esValue;
-    if (enValue) return enValue;
-    return fallback || element.textContent.trim();
-}
-
-function setFormStatus(statusElement, type, message) {
-    if (!statusElement) return;
-    statusElement.textContent = message;
-    statusElement.className = `form-status ${type}`;
-    statusElement.hidden = false;
-}
-
-function setSubmitButtonState(button, isSubmitting) {
-    if (!button) return;
-    const buttonLabel = button.querySelector('[data-text-en][data-text-es]');
-    const defaultLabel = getLocalizedValue(buttonLabel, 'Send Message');
-    const sendingLabel = AppState.currentLang === 'es' ? 'Enviando...' : 'Sending...';
-
-    button.disabled = isSubmitting;
-    button.setAttribute('aria-busy', isSubmitting ? 'true' : 'false');
-    if (buttonLabel) {
-        buttonLabel.textContent = isSubmitting ? sendingLabel : defaultLabel;
-    }
-}
-
-async function handleFormSubmit(e) {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const form = e.target;
     const endpoint = form.getAttribute('data-endpoint');
-    const submitButton = form.querySelector('.btn-submit');
-    const statusElement = document.getElementById('formStatus');
+    if (!endpoint) return;
 
-    if (!endpoint) {
-        const configError = AppState.currentLang === 'es'
-            ? 'No se encontró la configuración del formulario.'
-            : 'Form configuration is missing.';
-        setFormStatus(statusElement, 'error', configError);
-        return;
-    }
+    const data = Object.fromEntries(new FormData(form).entries());
+    if (data._honey) return;
 
-    const formData = new FormData(form);
-    const honeyValue = String(formData.get('_honey') || '').trim();
-    if (honeyValue) {
-        return;
-    }
-
-    const payload = {
-        name: String(formData.get('name') || '').trim(),
-        email: String(formData.get('email') || '').trim(),
-        subject: String(formData.get('subject') || '').trim(),
-        message: String(formData.get('message') || '').trim(),
-        _honey: '',
-        _captcha: 'false',
-        _template: 'table'
-    };
-
-    if (!payload.name || !payload.email || !payload.subject || !payload.message) {
-        const validationError = AppState.currentLang === 'es'
-            ? 'Completa todos los campos antes de enviar.'
-            : 'Please complete all fields before sending.';
-        setFormStatus(statusElement, 'error', validationError);
-        return;
-    }
-
-    setSubmitButtonState(submitButton, true);
-    const sendingMessage = AppState.currentLang === 'es'
-        ? 'Enviando mensaje...'
-        : 'Sending message...';
-    setFormStatus(statusElement, 'pending', sendingMessage);
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+    showStatus('', false);
 
     try {
-        const response = await fetch(endpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-        if (!response.ok || (result.success !== 'true' && result.success !== true)) {
-            throw new Error(result.message || 'Email provider rejected the request.');
-        }
-
-        form.reset();
-        const successMessage = AppState.currentLang === 'es'
-            ? 'Mensaje enviado con éxito. Te responderé pronto.'
-            : 'Message sent successfully. I will reply soon.';
-        setFormStatus(statusElement, 'success', successMessage);
-    } catch (error) {
-        console.error('Contact form send failed:', error);
-        const failureMessage = AppState.currentLang === 'es'
-            ? 'No se pudo enviar el mensaje. Intenta nuevamente en unos minutos.'
-            : 'Unable to send the message. Please try again in a few minutes.';
-        setFormStatus(statusElement, 'error', failureMessage);
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error('Network error');
+      form.reset();
+      showStatus(state.lang === 'es' ? '¡Mensaje enviado! Te responderé pronto.' : 'Message sent! I will get back to you soon.', true);
+    } catch (err) {
+      showStatus(state.lang === 'es' ? 'No se pudo enviar el mensaje. Probá de nuevo o escribime por correo.' : 'Could not send the message. Please try again or email me directly.', false, true);
     } finally {
-        setSubmitButtonState(submitButton, false);
+      if (submitBtn) submitBtn.disabled = false;
     }
+  });
+
+  function showStatus(msg, success, isError) {
+    if (!status) return;
+    if (!msg) { status.hidden = true; status.textContent = ''; status.className = 'form-status'; return; }
+    status.hidden = false;
+    status.textContent = msg;
+    status.className = 'form-status ' + (success ? 'success' : (isError ? 'error' : ''));
+  }
 }
-
-function initMobileMenu() {
-    const menuToggle = document.getElementById('menuToggle');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', toggleMobileMenu);
-    }
-    
-    document.addEventListener('click', (e) => {
-        const navMenu = document.getElementById('navMenu');
-        const menuToggle = document.getElementById('menuToggle');
-        
-        if (AppState.isMenuOpen && 
-            !navMenu.contains(e.target) && 
-            !menuToggle.contains(e.target)) {
-            toggleMobileMenu();
-        }
-    });
-}
-
-function toggleMobileMenu() {
-    AppState.isMenuOpen = !AppState.isMenuOpen;
-    const navMenu = document.getElementById('navMenu');
-    const menuToggle = document.getElementById('menuToggle');
-    
-    if (navMenu) {
-        navMenu.classList.toggle('active', AppState.isMenuOpen);
-    }
-    
-    if (menuToggle) {
-        menuToggle.classList.toggle('active', AppState.isMenuOpen);
-    }
-}
-
-function generateParticles() {
-    const particlesContainer = document.getElementById('particles');
-    if (!particlesContainer) return;
-    
-    const codeSymbols = ['{', '}', '[', ']', '(', ')', '<', '>', '/', '*', '=', '+', '-', ';', ':', '&', '|', '%', '$', '#', '@'];
-    const particleCount = 20;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.textContent = codeSymbols[Math.floor(Math.random() * codeSymbols.length)];
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-        particlesContainer.appendChild(particle);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    generateParticles();
-});
-
-
-
-//--------------animations.js-----------------
-function inView(element, callback, options = {}) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                callback(entry);
-                if (options.once !== false) {
-                    observer.unobserve(entry.target);
-                }
-            }
-        });
-    }, {
-        threshold: options.amount || 0.1,
-        rootMargin: options.rootMargin || '0px'
-    });
-    observer.observe(element);
-    return () => observer.unobserve(element);
-}
-
-function animateElement(element, props, options = {}) {
-    if (typeof anime === 'undefined') return;
-    const animeProps = {};
-    if (props.opacity) animeProps.opacity = props.opacity;
-    if (props.x !== undefined) animeProps.translateX = props.x;
-    if (props.y !== undefined) animeProps.translateY = props.y;
-    if (props.scale) animeProps.scale = props.scale;
-    return anime({
-        targets: element,
-        ...animeProps,
-        duration: (options.duration || 0.8) * 1000,
-        delay: (options.delay || 0) * 1000,
-        easing: options.easing || 'easeOutExpo'
-    });
-}
-
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        initLoaderAnimation();
-    }, 100);
-});
-
-function initLoaderAnimation() {
-    const loader = document.getElementById('loader');
-    const loaderPercent = document.getElementById('loaderPercent');
-    if (!loader || !loaderPercent) return;
-    
-    let progress = 0;
-    const progressInterval = setInterval(() => {
-        progress += Math.random() * 15;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(progressInterval);
-            setTimeout(() => {
-                if (typeof anime !== 'undefined') {
-                    anime({
-                        targets: loader,
-                        opacity: [1, 0],
-                        duration: 500,
-                        easing: 'easeInOutQuad',
-                        complete: () => {
-                            loader.classList.add('hidden');
-                            initPageAnimations();
-                        }
-                    });
-                } else {
-                    loader.classList.add('hidden');
-                    initPageAnimations();
-                }
-            }, 300);
-        }
-        if (loaderPercent) {
-            loaderPercent.textContent = Math.floor(progress) + '%';
-        }
-    }, 100);
-}
-
-function initPageAnimations() {
-    setTimeout(() => {
-        initHeroAnimations();
-        initSkillAnimations();
-        initTimelineAnimations();
-        initProjectAnimations();
-        initScrollAnimations();
-        initContactAnimations();
-        animateStats();
-        initParallax();
-        initSmoothScroll();
-    }, 300);
-}
-
-function initHeroAnimations() {
-    if (typeof anime === 'undefined') return;
-    
-    const heroName = document.getElementById('heroName');
-    if (heroName) {
-        const nameValue = heroName.querySelector('.name-value');
-        if (nameValue) {
-            const originalText = nameValue.textContent;
-            nameValue.textContent = '';
-            anime({
-                targets: { value: 0 },
-                value: originalText.length,
-                duration: 1500,
-                delay: 500,
-                easing: 'easeInOutQuad',
-                update: function(anim) {
-                    const length = Math.floor(anim.animatables[0].target.value);
-                    nameValue.textContent = originalText.substring(0, length);
-                },
-                complete: () => {
-                    const cursor = document.createElement('span');
-                    cursor.className = 'name-cursor';
-                    cursor.textContent = '|';
-                    cursor.style.animation = 'blink 1s infinite';
-                    nameValue.appendChild(cursor);
-                    setTimeout(() => cursor.remove(), 2000);
-                }
-            });
-        }
-    }
-    
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        anime({
-            targets: heroTitle,
-            opacity: [0, 1],
-            translateX: [-30, 0],
-            delay: 800,
-            duration: 1000,
-            easing: 'easeOutExpo'
-        });
-    }
-    
-    const heroDescription = document.querySelector('.hero-description');
-    if (heroDescription) {
-        anime({
-            targets: heroDescription,
-            opacity: [0, 1],
-            translateY: [20, 0],
-            delay: 1200,
-            duration: 1000,
-            easing: 'easeOutExpo'
-        });
-    }
-    
-    const heroButtons = document.querySelectorAll('.hero-buttons .btn');
-    if (heroButtons.length > 0) {
-        anime({
-            targets: heroButtons,
-            opacity: [0, 1],
-            scale: [0.8, 1],
-            delay: anime.stagger(100, {start: 1500}),
-            duration: 800,
-            easing: 'easeOutBack'
-        });
-    }
-    
-    const socialIcons = document.querySelectorAll('.hero-social .social-icon');
-    if (socialIcons.length > 0) {
-        anime({
-            targets: socialIcons,
-            opacity: [0, 1],
-            scale: [0, 1],
-            rotate: [180, 0],
-            delay: anime.stagger(100, {start: 2000}),
-            duration: 800,
-            easing: 'easeOutBack'
-        });
-    }
-    
-    const profileImage = document.getElementById('profileImage');
-    if (profileImage) {
-        anime({
-            targets: profileImage,
-            opacity: [0, 1],
-            scale: [0.8, 1],
-            rotate: [180, 0],
-            delay: 1000,
-            duration: 1500,
-            easing: 'easeOutElastic(1, .8)'
-        });
-        
-        profileImage.addEventListener('mouseenter', () => {
-            anime({
-                targets: profileImage,
-                scale: [1, 1.1],
-                rotate: [0, 5],
-                duration: 500,
-                easing: 'easeOutElastic(1, .8)'
-            });
-        });
-        
-        profileImage.addEventListener('mouseleave', () => {
-            anime({
-                targets: profileImage,
-                scale: [1.1, 1],
-                rotate: [5, 0],
-                duration: 500,
-                easing: 'easeOutElastic(1, .8)'
-            });
-        });
-    }
-    
-    const badges = document.querySelectorAll('.floating-badge');
-    if (badges.length > 0) {
-        badges.forEach((badge, index) => {
-            anime({
-                targets: badge,
-                opacity: [0, 1],
-                scale: [0, 1],
-                delay: 1500 + (index * 200),
-                duration: 800,
-                easing: 'easeOutBack'
-            });
-        });
-    }
-}
-
-function initSkillAnimations() {
-    const skillsSection = document.getElementById('skills');
-    if (!skillsSection) return;
-
-    const skillItems = skillsSection.querySelectorAll('.skill-item');
-    if (!skillItems.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const skillItem = entry.target;
-                const progressBar = skillItem.querySelector('.skill-progress');
-                const percentElement = skillItem.querySelector('.skill-percent');
-                const percent = Number.parseInt(skillItem.getAttribute('data-percent') || '0', 10);
-                const safePercent = Number.isFinite(percent) ? Math.max(0, Math.min(percent, 100)) : 0;
-                
-                if (progressBar && typeof anime !== 'undefined') {
-                    anime({
-                        targets: progressBar,
-                        width: ['0%', `${safePercent}%`],
-                        duration: 2000,
-                        easing: 'easeOutExpo',
-                        delay: 300
-                    });
-                    
-                    anime({
-                        targets: { value: 0 },
-                        value: safePercent,
-                        duration: 2000,
-                        easing: 'easeOutExpo',
-                        delay: 300,
-                        update: function(anim) {
-                            if (percentElement) {
-                                percentElement.textContent = `${Math.floor(anim.animatables[0].target.value)}%`;
-                            }
-                        }
-                    });
-                } else {
-                    if (progressBar) {
-                        progressBar.style.width = `${safePercent}%`;
-                    }
-                    if (percentElement) {
-                        percentElement.textContent = `${safePercent}%`;
-                    }
-                }
-
-                observer.unobserve(skillItem);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    skillItems.forEach(item => observer.observe(item));
-}
-
-function initTimelineAnimations() {
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach((item, index) => {
-        inView(item, () => {
-            if (typeof anime !== 'undefined') {
-                anime({
-                    targets: item,
-                    opacity: [0, 1],
-                    translateX: [-50, 0],
-                    delay: index * 150,
-                    duration: 1000,
-                    easing: 'easeOutExpo'
-                });
-            } else {
-                animateElement(item, { opacity: [0, 1], x: [-50, 0] }, { duration: 0.8, delay: index * 0.1 });
-            }
-        }, { amount: 0.3 });
-    });
-}
-
-function initProjectAnimations() {
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, index) => {
-        inView(card, () => {
-            if (typeof anime !== 'undefined') {
-                anime({
-                    targets: card,
-                    opacity: [0, 1],
-                    translateY: [50, 0],
-                    scale: [0.9, 1],
-                    delay: index * 100,
-                    duration: 1000,
-                    easing: 'easeOutExpo'
-                });
-            } else {
-                animateElement(card, { opacity: [0, 1], y: [50, 0], scale: [0.9, 1] }, { duration: 0.8, delay: index * 0.1 });
-            }
-        }, { amount: 0.2 });
-        
-        card.addEventListener('mouseenter', () => {
-            if (typeof anime !== 'undefined') {
-                anime({ targets: card, scale: [1, 1.02], duration: 300, easing: 'easeOutQuad' });
-            }
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            if (typeof anime !== 'undefined') {
-                anime({ targets: card, scale: [1.02, 1], duration: 300, easing: 'easeOutQuad' });
-            }
-        });
-    });
-}
-
-function initScrollAnimations() {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        inView(section, () => {
-            const sectionHeader = section.querySelector('.section-header');
-            if (sectionHeader && typeof anime !== 'undefined') {
-                anime({
-                    targets: sectionHeader,
-                    opacity: [0, 1],
-                    translateY: [-20, 0],
-                    duration: 600,
-                    easing: 'easeOutExpo'
-                });
-            }
-        }, { amount: 0.2 });
-    });
-    
-    const cards = document.querySelectorAll('.project-card, .contact-item');
-    cards.forEach((card, index) => {
-        inView(card, () => {
-            if (typeof anime !== 'undefined') {
-                anime({
-                    targets: card,
-                    opacity: [0, 1],
-                    translateY: [30, 0],
-                    delay: index * 30,
-                    duration: 500,
-                    easing: 'easeOutExpo'
-                });
-            } else {
-                animateElement(card, { opacity: [0, 1], y: [50, 0] }, { duration: 0.6, delay: index * 0.05 });
-            }
-        }, { amount: 0.2 });
-    });
-}
-
-function animateStats() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-    statNumbers.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-count') || 0);
-        inView(stat, () => {
-            if (typeof anime !== 'undefined') {
-                anime({
-                    targets: { value: 0 },
-                    value: target,
-                    duration: 2000,
-                    easing: 'easeOutExpo',
-                    update: function(anim) {
-                        stat.textContent = Math.floor(anim.animatables[0].target.value);
-                    }
-                });
-            }
-        }, { amount: 0.5 });
-    });
-}
-
-function initContactAnimations() {
-    const contactItems = document.querySelectorAll('.contact-item');
-    contactItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            if (typeof anime !== 'undefined') {
-                anime({ targets: item, scale: [1, 1.02], duration: 200, easing: 'easeOutQuad' });
-            }
-        });
-        item.addEventListener('mouseleave', () => {
-            if (typeof anime !== 'undefined') {
-                anime({ targets: item, scale: [1.02, 1], duration: 200, easing: 'easeOutQuad' });
-            }
-        });
-    });
-}
-
-function initParallax() {
-    const profileImage = document.getElementById('profileImage');
-    if (profileImage) {
-        profileImage.style.transform = '';
-    }
-    
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                const scrolled = window.pageYOffset;
-                
-                const gridBg = document.querySelector('.code-grid-bg');
-                if (gridBg) {
-                    gridBg.style.transform = `translateY(${scrolled * 0.2}px)`;
-                }
-                
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-}
-
-function initSmoothScroll() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const headerHeight = document.querySelector('.main-header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
-                
-                if (typeof anime !== 'undefined') {
-                    anime({
-                        targets: window,
-                        scrollTop: targetPosition,
-                        duration: 800,
-                        easing: 'easeInOutQuad'
-                    });
-                } else {
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-    
-    let currentSection = '';
-    window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY + 150;
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                if (currentSection !== sectionId) {
-                    currentSection = sectionId;
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            }
-        });
-    });
-}
-
