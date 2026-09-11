@@ -360,12 +360,47 @@ body {
 .cert-year { margin-left: auto; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
 .cert-main p { margin: 0; color: var(--text-dim); font-size: 0.9rem; }
 
-/* Skills */
-.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-.skill-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
-.skill-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.skill-head i { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--accent-soft); color: var(--accent); font-size: 0.95rem; }
-.skill-head h3 { margin: 0; font-size: 1.05rem; font-weight: 700; }
+/* Skills — 3D spinning circle */
+.skills-stage {
+  overflow: hidden;
+  padding: 56px 0 20px;
+  perspective: 1400px;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.skills-stage:active { cursor: grabbing; }
+.carousel-3d {
+  position: relative;
+  width: 122px;
+  height: 160px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.skill-item {
+  position: absolute;
+  inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: transparent;
+  border: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.skill-item i { font-size: 46px; line-height: 1; color: var(--text); }
+.skill-item .fab { font-size: 44px; }
+.skill-item span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); white-space: nowrap; }
+.skills-hint {
+  text-align: center;
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-mute);
+  margin: 20px 0 4px;
+}
+@media (max-width: 560px) {
+  .carousel-3d { width: 104px; height: 148px; }
+  .skill-item i { font-size: 38px; }
+  .skill-item .fab { font-size: 36px; }
+}
 
 /* Contact */
 .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }

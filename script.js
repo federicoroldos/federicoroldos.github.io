@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   bindReveal();
   bindContactForm();
   bindTerminal();
+  bindSkillsCarousel();
   setYear();
 });
 
@@ -492,4 +493,77 @@ function bindContactForm() {
     status.textContent = msg;
     status.className = 'form-status ' + (success ? 'success' : (isError ? 'error' : ''));
   }
+}
+
+/* ===== Skills 3D carousel ===== */
+function bindSkillsCarousel() {
+  const stage = document.getElementById('skillsStage');
+  const ring = document.getElementById('skillsRing');
+  if (!stage || !ring) return;
+  const items = Array.from(ring.children).filter(el => el.classList.contains('skill-item'));
+  const N = items.length;
+  if (N === 0) return;
+
+  const step = 360 / N;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function layout() {
+    const w = items[0].offsetWidth || 122;
+    const radius = Math.round((w + 56) / (2 * Math.tan(Math.PI / N)));
+    items.forEach((item, i) => {
+      item.style.transform = `rotateY(${(i * step).toFixed(2)}deg) translateZ(${radius}px)`;
+    });
+  }
+  layout();
+  window.addEventListener('resize', layout);
+
+  let rotation = 0;
+  let velocity = 0; // extra deg/sec from mouse interaction
+  const AUTO = reduceMotion ? 0 : 12; // deg/sec auto-spin
+  let last = performance.now();
+  let dragging = false;
+  let hovering = false;
+  let lastX = 0;
+
+  function frame(now) {
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    const speed = (hovering && !dragging ? 0 : AUTO) + velocity; // pause on hover so icons sit crisp
+    rotation = (rotation + speed * dt) % 360;
+    velocity *= Math.pow(0.12, dt);
+    if (Math.abs(velocity) < 0.05) velocity = 0;
+    ring.style.transform = `rotateX(1deg) rotateY(${rotation.toFixed(2)}deg)`;
+    for (let i = 0; i < N; i++) {
+      const rel = (((i * step + rotation) % 360) + 360) % 360;
+      const depth = (Math.cos(rel * Math.PI / 180) + 1) / 2; // 1 front, 0 back
+      items[i].style.opacity = (0.25 + 0.75 * depth).toFixed(2);
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // Drag to spin (with fling)
+  stage.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    lastX = e.clientX;
+    try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+  });
+  stage.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX;
+    lastX = e.clientX;
+    rotation = (rotation + dx * 0.3) % 360;
+    velocity = dx * 10;
+  });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(evt => stage.addEventListener(evt, () => { dragging = false; }));
+  stage.addEventListener('pointerenter', () => { hovering = true; });
+  stage.addEventListener('pointerleave', () => { hovering = false; });
+
+  // Mouse wheel to spin faster
+  stage.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+    rotation = (rotation + delta * 0.12) % 360;
+    velocity += delta * 0.5;
+  }, { passive: false });
 }

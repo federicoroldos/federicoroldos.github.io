@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-theme="dark" data-lang="en">
@@ -519,35 +520,28 @@
           <h2 class="section-title" data-i18n-en="What I work with" data-i18n-es="Con qué trabajo">What I work with</h2>
         </div>
 
-        <div class="skills-grid">
-          <div class="skill-block">
-            <div class="skill-head"><i class="fas fa-code"></i><h3 data-i18n-en="Languages" data-i18n-es="Lenguajes">Languages</h3></div>
-            <div class="chips chips-lg">
-              <span class="chip">Java</span><span class="chip">Python</span><span class="chip">Go</span><span class="chip">JavaScript</span>
-              <span class="chip">TypeScript</span><span class="chip">Kotlin</span><span class="chip">SQL</span>
-            </div>
+        <div class="skills-stage" id="skillsStage">
+          <div class="carousel-3d" id="skillsRing">
+            <div class="skill-item"><i class="devicon-java-plain" aria-hidden="true"></i><span>Java</span></div>
+            <div class="skill-item"><i class="devicon-python-plain" aria-hidden="true"></i><span>Python</span></div>
+            <div class="skill-item"><i class="devicon-go-plain" aria-hidden="true"></i><span>Go</span></div>
+            <div class="skill-item"><i class="devicon-typescript-plain" aria-hidden="true"></i><span>TypeScript</span></div>
+            <div class="skill-item"><i class="devicon-javascript-plain" aria-hidden="true"></i><span>JavaScript</span></div>
+            <div class="skill-item"><i class="devicon-kotlin-plain" aria-hidden="true"></i><span>Kotlin</span></div>
+            <div class="skill-item"><i class="devicon-react-original" aria-hidden="true"></i><span>React</span></div>
+            <div class="skill-item"><i class="devicon-nextjs-plain" aria-hidden="true"></i><span>Next.js</span></div>
+            <div class="skill-item"><i class="devicon-spring-plain" aria-hidden="true"></i><span>Spring Boot</span></div>
+            <div class="skill-item"><i class="devicon-fastapi-plain" aria-hidden="true"></i><span>FastAPI</span></div>
+            <div class="skill-item"><i class="devicon-flask-original" aria-hidden="true"></i><span>Flask</span></div>
+            <div class="skill-item"><i class="devicon-docker-plain" aria-hidden="true"></i><span>Docker</span></div>
+            <div class="skill-item"><i class="devicon-terraform-plain" aria-hidden="true"></i><span>Terraform</span></div>
+            <div class="skill-item"><i class="fab fa-aws" aria-hidden="true"></i><span>AWS</span></div>
+            <div class="skill-item"><i class="devicon-githubactions-plain" aria-hidden="true"></i><span>GitHub Actions</span></div>
+            <div class="skill-item"><i class="devicon-postgresql-plain" aria-hidden="true"></i><span>PostgreSQL</span></div>
+            <div class="skill-item"><i class="devicon-redis-plain" aria-hidden="true"></i><span>Redis</span></div>
+            <div class="skill-item"><i class="devicon-linux-plain" aria-hidden="true"></i><span>Linux</span></div>
           </div>
-          <div class="skill-block">
-            <div class="skill-head"><i class="fas fa-window-restore"></i><h3 data-i18n-en="Frontend &amp; Frameworks" data-i18n-es="Frontend y Frameworks">Frontend &amp; Frameworks</h3></div>
-            <div class="chips chips-lg">
-              <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Spring Boot</span>
-              <span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">Material UI</span><span class="chip">Jetpack Compose</span>
-            </div>
-          </div>
-          <div class="skill-block">
-            <div class="skill-head"><i class="fas fa-gears"></i><h3 data-i18n-en="DevOps &amp; Cloud" data-i18n-es="DevOps y Cloud">DevOps &amp; Cloud</h3></div>
-            <div class="chips chips-lg">
-              <span class="chip">Docker</span><span class="chip">Terraform</span><span class="chip">AWS</span>
-              <span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">SonarCloud</span><span class="chip">Vercel</span>
-            </div>
-          </div>
-          <div class="skill-block">
-            <div class="skill-head"><i class="fas fa-database"></i><h3 data-i18n-en="Data &amp; Systems" data-i18n-es="Datos y Sistemas">Data &amp; Systems</h3></div>
-            <div class="chips chips-lg">
-              <span class="chip">PostgreSQL</span><span class="chip">SQLite</span><span class="chip">Redis</span><span class="chip">Linux</span>
-              <span class="chip">Windows Server</span><span class="chip">Virtualization</span><span class="chip">Networking</span>
-            </div>
-          </div>
+          <p class="skills-hint" data-i18n-en="Drag or scroll to spin" data-i18n-es="Arrastra o usa la rueda para girar">Drag or scroll to spin</p>
         </div>
       </div>
     </section>
