@@ -1,2 +1,2 @@
 # roldoswebsite
-Repo holding all the files required to host my website
+Repo holding all my personal webpage's files.
