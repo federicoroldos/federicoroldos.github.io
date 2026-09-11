@@ -354,6 +354,7 @@ body {
 .cert-row:last-child { border-bottom: none; }
 .cert-row:hover { background: var(--bg-card-2); }
 .cert-ico { flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--accent-soft); color: var(--accent); font-size: 0.9rem; }
+.cert-ico svg { width: 20px; height: 20px; fill: currentColor; display: block; }
 .cert-main { min-width: 0; flex: 1; }
 .cert-top { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2px; }
 .cert-top h4 { margin: 0; font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
