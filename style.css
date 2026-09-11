@@ -374,18 +374,30 @@ body {
 .skills-stage:active { cursor: grabbing; }
 .carousel-3d {
   position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 20px 14px; justify-content: center;
+}
+.skill-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px;
+  min-width: 96px;
+  background: transparent;
+  border: none;
+}
+/* 3D mode — enabled by JS (graceful grid fallback otherwise) */
+.skills-3d .carousel-3d {
+  display: block;
+  max-width: none;
   width: 122px;
   height: 160px;
-  margin: 0 auto;
   transform-style: preserve-3d;
   will-change: transform;
 }
-.skill-item {
+.skills-3d .skill-item {
   position: absolute;
   inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
-  background: transparent;
-  border: none;
+  min-width: 0;
+  justify-content: center;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
@@ -398,7 +410,7 @@ body {
   margin: 20px 0 4px;
 }
 @media (max-width: 560px) {
-  .carousel-3d { width: 104px; height: 148px; }
+  .skills-3d .carousel-3d { width: 104px; height: 148px; }
   .skill-item i { font-size: 38px; }
   .skill-item .fab { font-size: 36px; }
 }

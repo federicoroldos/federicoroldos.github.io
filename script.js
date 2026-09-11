@@ -503,6 +503,7 @@ function bindSkillsCarousel() {
   const items = Array.from(ring.children).filter(el => el.classList.contains('skill-item'));
   const N = items.length;
   if (N === 0) return;
+  stage.classList.add('skills-3d');
 
   const step = 360 / N;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
